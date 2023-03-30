@@ -1,3 +1,66 @@
+@import '../../utils/variables';
+
 .content {
   width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-left,
+  &-right {
+    width: 40%;
+  }
+
+  &-left {
+    h1 {
+      b {
+        color: $highlight-color;
+      }
+    }
+
+    &--input {
+      margin-top: 4rem;
+
+      label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: $paragraph-two-size;
+      }
+
+      &-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 1rem;
+
+        input {
+          width: 80%;
+          height: 50px;
+          border-radius: 0.25rem;
+          border: 2px solid $secondary-color;
+          background: none;
+          padding-left: 1rem;
+        }
+
+        ::placeholder {
+          opacity: 0.5;
+        }
+
+        svg {
+          cursor: pointer;
+          transform: translateX(-30px);
+
+          path {
+            fill: $highlight-color;
+          }
+        }
+      }
+    }
+  }
+
+  &-right {
+    // todo
+  }
 }

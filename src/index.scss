@@ -14,7 +14,7 @@ body {
 
   font-family: $primary-font-family;
   font-size: 1rem;
-  line-height: 1.5rem;
+  line-height: normal;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -32,8 +32,19 @@ h1 {
   font-size: $heading-one-size;
 }
 
+h2 {
+  font-size: $heading-two-size;
+  font-weight: 300;
+}
+
 p {
   font-size: $paragraph-one-size;
+}
+
+input,
+::placeholder {
+  color: $secondary-color;
+  font-family: inherit;
 }
 
 button {

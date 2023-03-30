@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 
 // fonts
+
 $primary-font-family: 'Josefin Sans';
 
 // colors
+
 $primary-color: #ffffff;
 $secondary-color: #0e0e2c;
 $highlight-color: #74aa9c;
@@ -15,7 +17,7 @@ $shades-gray: #797979;
 
 $heading-one-size: 3.75rem;
 $heading-one-letter-spacing: 0.25rem;
-$heading-two-size: 2rem;
+$heading-two-size: 1.5rem;
 $heading-two-letter-spacing: 0.25rem;
 
 $paragraph-one-size: 1rem;
@@ -25,11 +27,12 @@ $paragraph-two-size: 0.75rem;
 
 $heading-one-size-mobile: 3rem;
 $heading-one-letter-spacing-mobile: 0.125rem;
-$heading-two-size-mobile: 2rem;
+$heading-two-size-mobile: 1rem;
 $heading-two-letter-spacing-mobile: 0.125rem;
 
 $paragraph-one-size-mobile: 0.875rem;
 $paragraph-two-size-mobile: 0.5rem;
 
 // animations
+
 $golden-ratio-time: 1.618s;
