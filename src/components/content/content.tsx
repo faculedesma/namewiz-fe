@@ -5,9 +5,7 @@ import './content.scss';
 const Content = () => {
   const [text, setText] = useState('');
 
-  const handleInputChange = (e) => {
-    setText(e.target.value);
-  };
+  const handleInputChange = (e) => setText(e.target.value);
 
   const handleSubscribeNewsletter = (e) => console.log(e);
 
