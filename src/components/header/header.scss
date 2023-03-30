@@ -1,0 +1,94 @@
+@import '../../utils/variables';
+
+header {
+  width: 100dvw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid rgba($highlight-color, 0.2);
+}
+
+.header {
+  position: relative;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90px;
+
+    p {
+      font-size: 0.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+  &-right {
+    width: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--links {
+      width: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      a {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(1);
+        transition: $golden-ratio-time / 4 ease-in;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: $golden-ratio-time / 4 ease-out;
+        }
+      }
+    }
+
+    &--user {
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      &-pic {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid $secondary-color;
+        transform: scale(1);
+        transition: $golden-ratio-time / 4 ease-in;
+
+        &:hover {
+          transform: scale(1.1);
+          transition: $golden-ratio-time / 4 ease-out;
+        }
+
+        svg {
+          fill: $highlight-color;
+        }
+      }
+    }
+  }
+}
