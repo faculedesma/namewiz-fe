@@ -32,10 +32,14 @@ h1 {
   font-size: $heading-one-size;
 }
 
+p {
+  font-size: $paragraph-one-size;
+}
+
 button {
   border-radius: 0.5rem;
   border: 1px solid transparent;
-  font-size: 1rem;
+  font-size: $paragraph-one-size;
   font-weight: 700;
   font-family: inherit;
   background-color: $secondary-color;
