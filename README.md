@@ -1,12 +1,14 @@
+[![Deployment Pipeline](https://github.com/faculedesma/wisian-ai/actions/workflows/pipeline.yml/badge.svg)](https://github.com/faculedesma/wisian-ai/actions/workflows/pipeline.yml)
+
 # Wisian AI
 
 ## About The Project
 
-This is the starter boilerplate code to build reactjs applications with typescript. It was created using Vite next generation frontend tooling. Also includes the use of eslint & prettier for code formatting.
+Web application to find the perfect name for your baby based on carefully selected filters.
 
 ## Built With
 
-I'm using these main technologies to build this project:
+We are using these main technologies to build this project:
 
 [![ReactJS][react]][react-url]
 [![Typescript][typescript]][typescript-url]
@@ -25,7 +27,7 @@ If you want to play with it just follow these steps:
 
 1. Clone the repo
    ```sh
-   git clone git@github.com:faculedesma/reactjs-vite.git
+   git clone git@github.com:faculedesma/wisian-ai.git
    ```
 2. Install NPM packages
    ```sh
@@ -43,6 +45,7 @@ Distributed under the ISC License.
 ## Contact
 
 Facundo Ledesma - faculedesma1993@gmail.com
+Luciano García Zeman - cluciano.gz@gmail.com
 
 [react]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react
 [react-url]: https://reactjs.org/

@@ -49,12 +49,12 @@ header {
         align-items: center;
         justify-content: center;
         transform: scale(1);
-        transition: $golden-ratio-time / 4 ease-in;
+        transition: calc($golden-ratio-time / 4) ease-in;
         cursor: pointer;
 
         &:hover {
           transform: scale(1.1);
-          transition: $golden-ratio-time / 4 ease-out;
+          transition: calc($golden-ratio-time / 4) ease-out;
         }
       }
     }
@@ -80,11 +80,11 @@ header {
         border-radius: 50%;
         border: 1px solid $secondary-color;
         transform: scale(1);
-        transition: $golden-ratio-time / 4 ease-in;
+        transition: calc($golden-ratio-time / 4) ease-in;
 
         &:hover {
           transform: scale(1.1);
-          transition: $golden-ratio-time / 4 ease-out;
+          transition: calc($golden-ratio-time / 4) ease-out;
         }
 
         svg {
