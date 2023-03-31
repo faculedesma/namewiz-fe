@@ -1,0 +1,28 @@
+@import '../../utils/variables';
+
+.letter-start {
+  h3 {
+    margin-bottom: 1.5rem;
+  }
+
+  input {
+    width: fit-content;
+    border: none;
+    font-size: $paragraph-one-size;
+
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
+  }
+
+  input,
+  ::placeholder {
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  ::placeholder {
+    opacity: 0.5;
+  }
+}

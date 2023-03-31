@@ -4,6 +4,7 @@ import { ArrowRight } from '@assets/svgs/ArrowRight';
 import { Formule } from '@assets/svgs/Formule';
 import { ZodiacSigns } from '@components/filters/ZodiacSigns';
 import { Nationality } from '@components/filters/Nationality';
+import { LetterStart } from '@components/filters/LetterStart';
 import './content.scss';
 
 const Content = () => {
@@ -51,6 +52,7 @@ const Content = () => {
         <div className="content-right">
           <ZodiacSigns />
           <Nationality />
+          <LetterStart />
         </div>
       </div>
     </div>
