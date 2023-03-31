@@ -5,12 +5,10 @@ import './app.scss';
 
 const App: React.FC = () => {
   return (
-    <div className="container">
-      <div className="app">
-        <Header />
-        <Content />
-        <Footer />
-      </div>
+    <div className="app">
+      <Header />
+      <Content />
+      <Footer />
     </div>
   );
 };

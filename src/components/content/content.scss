@@ -13,9 +13,24 @@
   }
 
   &-left {
+    position: relative;
+
     h1 {
       b {
         color: $highlight-color;
+      }
+    }
+
+    &--bg {
+      position: absolute;
+      left: -150px;
+      top: -50px;
+      z-index: -1;
+
+      svg {
+        width: 1000px;
+        height: 1000px;
+        opacity: 0.02;
       }
     }
 
