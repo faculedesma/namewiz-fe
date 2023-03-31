@@ -17,6 +17,7 @@
     width: 175px;
 
     &--top {
+      cursor: pointer;
       width: auto;
       display: flex;
       align-items: center;
@@ -57,7 +58,6 @@
           width: 30px;
           display: flex;
           align-items: center;
-          cursor: pointer;
         }
       }
     }

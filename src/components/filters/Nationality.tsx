@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
+import { useClickOutside } from '@components/hooks/useClickOutside';
 import './nationality.scss';
 
 const COUNTRIES_URL =
@@ -38,6 +39,7 @@ const Country = ({
     useState<Country>(defaultEmptyCountry);
   const [search, setSearch] = useState<string>('');
 
+  const countryRef = useRef<HTMLDivElement>(null);
   const countryListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,22 +65,26 @@ const Country = ({
     setFilteredCountries(filtered);
   };
 
-  const handleToggleList = () => {
+  const handleCloseList = () => {
+    if (countryListRef.current) {
+      countryListRef.current.classList.remove('show-list');
+      countryListRef.current.classList.add('hide-list');
+    }
+  };
+
+  const handleOpenList = () => {
     if (countryListRef.current) {
       if (
-        countryListRef.current.classList.contains(
+        !countryListRef.current.classList.contains(
           'show-list'
         )
       ) {
         countryListRef.current.classList.remove(
-          'show-list'
-        );
-        countryListRef.current.classList.add('hide-list');
-      } else {
-        countryListRef.current.classList.remove(
           'hide-list'
         );
         countryListRef.current.classList.add('show-list');
+      } else {
+        handleCloseList();
       }
     }
   };
@@ -90,18 +96,20 @@ const Country = ({
     setSelectedCountry(newSelected!);
   };
 
+  useClickOutside(countryRef, handleCloseList);
+
   return (
-    <div className="nationality-input">
-      <div className="nationality-input--top">
+    <div ref={countryRef} className="nationality-input">
+      <div
+        className="nationality-input--top"
+        onClick={handleOpenList}
+      >
         <p>{selectedCountry.name}</p>
         <div className="nationality-input--top-right">
           <div className="nationality-input--top-right--flag">
             <img src={selectedCountry.flagUrl} alt="flag" />
           </div>
-          <div
-            onClick={handleToggleList}
-            className="nationality-input--top-right--arrow"
-          >
+          <div className="nationality-input--top-right--arrow">
             <ArrowDown />
           </div>
         </div>
