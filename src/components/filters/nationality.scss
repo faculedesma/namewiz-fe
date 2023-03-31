@@ -30,28 +30,34 @@
         overflow-x: hidden;
       }
 
-      &-flag {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: $shades-gray;
-        overflow: hidden;
-        border: 1px solid rgba($shades-gray, 0.2);
-
-        img {
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-        }
-      }
-
-      &-arrow {
-        cursor: pointer;
-        height: 30px;
-        width: 30px;
+      &-right {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
+        gap: 1rem;
+
+        &--flag {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: $shades-gray;
+          overflow: hidden;
+          border: 1px solid rgba($shades-gray, 0.2);
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+
+        &--arrow {
+          height: 30px;
+          width: 30px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
       }
     }
 

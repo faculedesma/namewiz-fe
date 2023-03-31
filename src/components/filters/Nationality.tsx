@@ -94,14 +94,16 @@ const Country = ({
     <div className="nationality-input">
       <div className="nationality-input--top">
         <p>{selectedCountry.name}</p>
-        <div className="nationality-input--top-flag">
-          <img src={selectedCountry.flagUrl} alt="flag" />
-        </div>
-        <div
-          onClick={handleToggleList}
-          className="nationality-input--top-arrow"
-        >
-          <ArrowDown />
+        <div className="nationality-input--top-right">
+          <div className="nationality-input--top-right--flag">
+            <img src={selectedCountry.flagUrl} alt="flag" />
+          </div>
+          <div
+            onClick={handleToggleList}
+            className="nationality-input--top-right--arrow"
+          >
+            <ArrowDown />
+          </div>
         </div>
       </div>
       <div
