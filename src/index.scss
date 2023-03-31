@@ -47,6 +47,12 @@ p {
   font-size: $paragraph-one-size;
 }
 
+input {
+  border-radius: 0.25rem;
+  border: 2px solid $secondary-color;
+  background: none;
+}
+
 input,
 ::placeholder {
   color: $secondary-color;

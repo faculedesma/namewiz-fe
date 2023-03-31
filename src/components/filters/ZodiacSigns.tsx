@@ -11,6 +11,7 @@ import { Capricorn } from '@assets/svgs/signs/Capricorn';
 import { Aquarius } from '@assets/svgs/signs/Aquarius';
 import { Pisces } from '@assets/svgs/signs/Pisces';
 import { useState } from 'react';
+import './zodiac-signs.scss';
 
 const signs = [
   {

@@ -1,7 +1,9 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useState } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { ArrowRight } from '@assets/svgs/ArrowRight';
 import { Formule } from '@assets/svgs/Formule';
 import { ZodiacSigns } from '@components/filters/ZodiacSigns';
+import { Nationality } from '@components/filters/Nationality';
 import './content.scss';
 
 const Content = () => {
@@ -48,6 +50,7 @@ const Content = () => {
         </div>
         <div className="content-right">
           <ZodiacSigns />
+          <Nationality />
         </div>
       </div>
     </div>
