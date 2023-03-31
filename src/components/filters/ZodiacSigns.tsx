@@ -77,9 +77,21 @@ const signs = [
 ];
 
 export const ZodiacSigns = () => {
-  const [selected, setSelected] = useState<string>('');
+  const [selected, setSelected] = useState<string[]>([]);
 
-  const handleSingSelect = (id: string) => setSelected(id);
+  const handleSingSelect = (id: string) => {
+    let updatedSelected;
+    if (selected.includes(id)) {
+      updatedSelected = selected.filter(
+        (sign) => sign !== id
+      );
+      setSelected(updatedSelected);
+    }
+    if (selected.length < 3) {
+      updatedSelected = [...selected, id];
+      setSelected(updatedSelected);
+    }
+  };
 
   return (
     <div className="zodiac">
@@ -90,7 +102,9 @@ export const ZodiacSigns = () => {
             <div
               key={sign.id}
               className={`zodiac-signs--item ${
-                selected === sign.id ? 'sign-active' : ''
+                selected.includes(sign.id)
+                  ? 'sign-active'
+                  : ''
               }`}
               onClick={() => handleSingSelect(sign.id)}
             >

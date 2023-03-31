@@ -52,6 +52,10 @@
         opacity: 1;
         transition: all calc($golden-ratio-time / 8) ease-in;
       }
+
+      label {
+        border-bottom: 1px solid $secondary-color;
+      }
     }
   }
 }
