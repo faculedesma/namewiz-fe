@@ -81,14 +81,15 @@ export const ZodiacSigns = () => {
 
   const handleSingSelect = (id: string) => {
     let updatedSelected;
+    if (selected.length < 3) {
+      updatedSelected = [...selected, id];
+      setSelected(updatedSelected);
+      return;
+    }
     if (selected.includes(id)) {
       updatedSelected = selected.filter(
         (sign) => sign !== id
       );
-      setSelected(updatedSelected);
-    }
-    if (selected.length < 3) {
-      updatedSelected = [...selected, id];
       setSelected(updatedSelected);
     }
   };
