@@ -67,8 +67,16 @@ const Country = ({
 
   const handleCloseList = () => {
     if (countryListRef.current) {
-      countryListRef.current.classList.remove('show-list');
-      countryListRef.current.classList.add('hide-list');
+      if (
+        countryListRef.current.classList.contains(
+          'show-list'
+        )
+      ) {
+        countryListRef.current.classList.add('hide-list');
+        countryListRef.current.classList.remove(
+          'show-list'
+        );
+      }
     }
   };
 
