@@ -9,8 +9,10 @@ export const LetterStart = () => {
     e: ChangeEvent<HTMLInputElement>
   ) => {
     const text = e.target.value;
-    if (/^[a-zA-Z]$/.test(text) || !text) {
-      setLetter(text);
+    if (/^[a-zA-Z]*$/.test(text)) {
+      setLetter(text.charAt(text.length - 1));
+    } else if (!text) {
+      setLetter('');
     }
   };
 
@@ -21,7 +23,6 @@ export const LetterStart = () => {
         type="text"
         value={letter}
         onChange={handleInputChange}
-        maxLength={1}
         placeholder="A"
       />
     </div>
