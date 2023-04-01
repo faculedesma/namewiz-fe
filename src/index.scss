@@ -78,6 +78,10 @@ button:focus-visible {
   outline: none;
 }
 
+::selection {
+  background-color: $shades-gray-200;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: $secondary-color;

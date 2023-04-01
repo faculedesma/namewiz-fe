@@ -24,9 +24,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      cursor: pointer;
 
       svg {
-        cursor: pointer;
         width: 24px;
         height: 24px;
         opacity: 0.4;
@@ -41,9 +41,17 @@
       }
 
       label {
+        cursor: pointer;
         font-size: 0.75rem;
         text-transform: uppercase;
         margin-top: 1rem;
+        border-bottom: 1px solid transparent;
+        transition: all calc($golden-ratio-time / 8)
+          ease-out;
+
+        &:focus-visible {
+          background: none;
+        }
       }
     }
 
@@ -54,7 +62,10 @@
       }
 
       label {
-        border-bottom: 1px solid $secondary-color;
+        font-weight: 700;
+        border-bottom: 1px solid $highlight-color;
+        transition: all calc($golden-ratio-time / 8)
+          ease-out;
       }
     }
   }
