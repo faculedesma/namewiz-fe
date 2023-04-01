@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
+import { Loader } from '@components/loader/Loader';
 import './nationality.scss';
 
 const COUNTRIES_URL =
@@ -115,7 +116,14 @@ const Country = ({
         <p>{selectedCountry.name}</p>
         <div className="nationality-input--top-right">
           <div className="nationality-input--top-right--flag">
-            <img src={selectedCountry.flagUrl} alt="flag" />
+            {selectedCountry.flagUrl ? (
+              <img
+                src={selectedCountry.flagUrl}
+                alt="flag"
+              />
+            ) : (
+              <Loader />
+            )}
           </div>
           <div className="nationality-input--top-right--arrow">
             <ArrowDown />
