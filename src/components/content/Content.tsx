@@ -45,14 +45,14 @@ const Content = () => {
               </div>
             </form>
           </div>
-          <div className="content-left--bg">
-            <Formule />
-          </div>
         </div>
         <div className="content-right">
           <ZodiacSigns />
           <Nationality />
           <LetterStart />
+        </div>
+        <div className="content-bg">
+          <Formule />
         </div>
       </div>
     </div>
