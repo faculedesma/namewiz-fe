@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { personalityTraits } from '@constants/filters';
 import './personality.scss';
-
-const defaultPersonality = 'adventurous';
 
 const defaultEmptyPersonality = [
   {
@@ -28,11 +25,7 @@ export const PersonalityTraits = () => {
 
   useEffect(() => {
     if (personalityTraits.length) {
-      const defaultSelected = personalityTraits.find(
-        (personality) =>
-          personality.key === defaultPersonality
-      );
-      setSelectedPersonality([defaultSelected!]);
+      setSelectedPersonality([]);
     }
   }, [personalityTraits]);
 
@@ -41,7 +34,11 @@ export const PersonalityTraits = () => {
       (pers) => pers.key === key
     );
     if (isSelected) {
-      return;
+      setSelectedPersonality(
+        selectedPersonalities.filter(
+          (pers) => pers.key !== key
+        )
+      );
     } else if (selectedPersonalities.length < 3) {
       const newSelected = personalityTraits.find(
         (personality) => personality.key === key
@@ -78,14 +75,13 @@ export const PersonalityTraits = () => {
           className="personality-input--top"
           onClick={handleOpen}
         >
-          {selectedPersonalities.map((pers) => {
-            return <p>{pers.label}</p>;
-          })}
-          <div className="personality-input--top-right">
-            <div className="personality-input--top-right--arrow">
-              <ArrowDown />
-            </div>
-          </div>
+          {selectedPersonalities.length ? (
+            selectedPersonalities.map((pers) => {
+              return <p>{pers.label}</p>;
+            })
+          ) : (
+            <span>Select</span>
+          )}
         </div>
         <List
           ref={personalityListRef}

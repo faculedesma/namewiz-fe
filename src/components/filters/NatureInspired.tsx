@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { natureInspired } from '@constants/filters';
 import './nature-inspired.scss';
-
-const defaultNature = 'tree';
 
 const defaultEmptyNature = [
   {
@@ -20,35 +17,32 @@ type Nature = {
 };
 
 export const NatureInspired = () => {
-  const [selectedPersonalities, setSelectedNature] =
-    useState<Nature[]>(defaultEmptyNature);
+  const [selectedNature, setSelectedNature] = useState<
+    Nature[]
+  >(defaultEmptyNature);
 
   const natureRef = useRef<HTMLDivElement>(null);
   const natureListRef = useRef<ListRef>(null);
 
   useEffect(() => {
     if (natureInspired.length) {
-      const defaultSelected = natureInspired.find(
-        (nature) => nature.key === defaultNature
-      );
-      setSelectedNature([defaultSelected!]);
+      setSelectedNature([]);
     }
   }, [natureInspired]);
 
   const handleNatureSelect = (key: string) => {
-    const isSelected = selectedPersonalities.find(
+    const isSelected = selectedNature.find(
       (pers) => pers.key === key
     );
     if (isSelected) {
-      return;
-    } else if (selectedPersonalities.length < 3) {
+      setSelectedNature(
+        selectedNature.filter((pers) => pers.key !== key)
+      );
+    } else if (selectedNature.length < 3) {
       const newSelected = natureInspired.find(
         (nature) => nature.key === key
       );
-      setSelectedNature([
-        ...selectedPersonalities,
-        newSelected!
-      ]);
+      setSelectedNature([...selectedNature, newSelected!]);
     }
   };
 
@@ -74,14 +68,13 @@ export const NatureInspired = () => {
           className="nature-input--top"
           onClick={handleOpen}
         >
-          {selectedPersonalities.map((pers) => {
-            return <p>{pers.label}</p>;
-          })}
-          <div className="nature-input--top-right">
-            <div className="nature-input--top-right--arrow">
-              <ArrowDown />
-            </div>
-          </div>
+          {selectedNature.length ? (
+            selectedNature.map((pers) => {
+              return <p>{pers.label}</p>;
+            })
+          ) : (
+            <span>Select</span>
+          )}
         </div>
         <List
           ref={natureListRef}
