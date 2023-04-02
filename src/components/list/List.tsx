@@ -18,7 +18,7 @@ type ListProps = {
   searchPlaceholder?: string;
 };
 
-type ListRef = {
+export type ListRef = {
   open: () => void;
   close: () => void;
 };

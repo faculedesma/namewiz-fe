@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import { Loader } from '@components/loader/Loader';
-import List from '@components/list/List';
+import List, { ListRef } from '@components/list/List';
 import './nationality.scss';
 
 const COUNTRIES_URL =
@@ -38,10 +38,9 @@ const Country = ({
     useState<Country[]>([]);
   const [selectedCountry, setSelectedCountry] =
     useState<Country>(defaultEmptyCountry);
-  const [search, setSearch] = useState<string>('');
 
   const countryRef = useRef<HTMLDivElement>(null);
-  const countryListRef = useRef<HTMLDivElement>(null);
+  const countryListRef = useRef<ListRef>(null);
 
   useEffect(() => {
     if (countries.length) {
@@ -61,11 +60,15 @@ const Country = ({
   };
 
   const handleOpen = () => {
-    countryListRef.current?.open();
+    if (countryListRef.current) {
+      countryListRef.current.open();
+    }
   };
 
   const handleClose = () => {
-    countryListRef.current?.close();
+    if (countryListRef.current) {
+      countryListRef.current.close();
+    }
   };
 
   useClickOutside(countryRef, handleClose);
