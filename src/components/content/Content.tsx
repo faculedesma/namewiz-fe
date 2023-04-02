@@ -8,6 +8,7 @@ import { LetterStart } from '@components/filters/LetterStart';
 import { Gender } from '@components/filters/Gender';
 import { Longitude } from '@components/filters/Longitude';
 import { AditionalInformation } from '@components/filters/AditionalInformation';
+import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import './content.scss';
 
 const Content = () => {
@@ -64,6 +65,9 @@ const Content = () => {
             </div>
             <div className="content-right--filters-five">
               <AditionalInformation />
+            </div>
+            <div className="content-right--filters-cta">
+              <PrimaryButton label="Get Names" />
             </div>
           </div>
         </div>
