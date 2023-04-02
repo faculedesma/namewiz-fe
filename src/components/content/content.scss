@@ -52,19 +52,6 @@
           width: 80%;
           height: 50px;
           padding-left: 1rem;
-          border: 2px solid $secondary-color;
-          transition: all $golden-ratio-time / 8 ease-in-out;
-
-          &:focus-visible {
-            outline: none;
-            border: 2px solid $highlight-color;
-            transition: all $golden-ratio-time / 8
-              ease-in-out;
-          }
-        }
-
-        ::placeholder {
-          opacity: 0.5;
         }
 
         svg {
