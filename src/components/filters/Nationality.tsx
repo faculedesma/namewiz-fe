@@ -127,7 +127,7 @@ export const Nationality = () => {
 
   return (
     <div className="nationality">
-      <h3>Nationality:</h3>
+      <h3>Nationality</h3>
       <div className="nationality-selectors">
         <Country
           countries={countries}

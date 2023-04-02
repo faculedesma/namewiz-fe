@@ -98,7 +98,7 @@ export const ZodiacSigns = () => {
 
   return (
     <div className="zodiac">
-      <h3>Zodiac signs:</h3>
+      <h3>Zodiac signs</h3>
       <div className="zodiac-signs">
         {signs.map((sign) => {
           return (
