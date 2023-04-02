@@ -1,16 +1,10 @@
 @import '../../utils/variables';
 
 .gender {
-  h3 {
-    margin-top: 3rem;
-  }
-
-  &-selectors {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &-input {
     position: relative;
@@ -30,6 +24,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
+        margin: 0;
       }
 
       &-right {
@@ -62,7 +57,6 @@
         }
 
         &--arrow {
-          height: 30px;
           width: 30px;
           display: flex;
           align-items: center;

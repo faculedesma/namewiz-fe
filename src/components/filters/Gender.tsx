@@ -55,7 +55,7 @@ export const Gender = () => {
   useClickOutside(genderRef, handleClose);
 
   return (
-    <div className="nationality">
+    <div className="gender">
       <h3>Gender</h3>
       <div ref={genderRef} className="gender-input">
         <div

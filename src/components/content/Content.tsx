@@ -6,6 +6,7 @@ import { ZodiacSigns } from '@components/filters/ZodiacSigns';
 import { Nationality } from '@components/filters/Nationality';
 import { LetterStart } from '@components/filters/LetterStart';
 import { Gender } from '@components/filters/Gender';
+import { Longitude } from '@components/filters/Longitude';
 import './content.scss';
 
 const Content = () => {
@@ -48,10 +49,19 @@ const Content = () => {
           </div>
         </div>
         <div className="content-right">
-          <ZodiacSigns />
-          <Nationality />
-          <LetterStart />
-          <Gender />
+          <div className="content-right--filters">
+            <div className="content-right--filters-first">
+              <ZodiacSigns />
+            </div>
+            <div className="content-right--filters-second">
+              <Nationality />
+            </div>
+            <div className="content-right--filters-third">
+              <LetterStart />
+              <Gender />
+              <Longitude />
+            </div>
+          </div>
         </div>
         <div className="content-bg">
           <Formule />

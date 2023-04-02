@@ -1,9 +1,10 @@
 @import '../../utils/variables';
 
 .letter-start {
-  h3 {
-    margin-bottom: 1.5rem;
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   input {
     width: fit-content;

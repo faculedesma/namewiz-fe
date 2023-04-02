@@ -40,3 +40,18 @@ export const genders = [
     label: 'Other'
   }
 ];
+
+export const longitudes = [
+  {
+    key: 'short',
+    label: 'Short'
+  },
+  {
+    key: 'long',
+    label: 'Long'
+  },
+  {
+    key: 'medium',
+    label: 'Medium'
+  }
+];

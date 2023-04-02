@@ -32,6 +32,7 @@ const List = forwardRef<ListRef, ListProps>(
 
     const handleItemClick = (item: ListItem) => {
       props.onSelect(item);
+      setIsOpen(false);
     };
 
     const handleSearchChange = (
@@ -59,13 +60,19 @@ const List = forwardRef<ListRef, ListProps>(
       close: handleClose
     }));
 
+    const isFirstPaint = () =>
+      !listRef?.current?.classList.contains('close') ||
+      !listRef?.current?.classList.contains('open');
+
     useEffect(() => {
       if (isOpen && listRef.current) {
-        listRef.current.classList.add('open');
         listRef.current.classList.remove('close');
+        listRef.current.classList.add('open');
       } else if (!isOpen && listRef.current) {
+        // if (!isFirstPaint()) {
         listRef.current.classList.add('close');
         listRef.current.classList.remove('open');
+        // }
       }
     }, [isOpen]);
 

@@ -128,7 +128,7 @@ export const Nationality = () => {
   return (
     <div className="nationality">
       <h3>Nationality</h3>
-      <div className="nationality-selectors">
+      <div className="nationality-options">
         <Country
           countries={countries}
           defaultCountry="Argentina"
