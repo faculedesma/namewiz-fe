@@ -7,6 +7,7 @@ import { Nationality } from '@components/filters/Nationality';
 import { LetterStart } from '@components/filters/LetterStart';
 import { Gender } from '@components/filters/Gender';
 import { Longitude } from '@components/filters/Longitude';
+import { AditionalInformation } from '@components/filters/AditionalInformation';
 import './content.scss';
 
 const Content = () => {
@@ -60,6 +61,9 @@ const Content = () => {
               <LetterStart />
               <Gender />
               <Longitude />
+            </div>
+            <div className="content-right--filters-five">
+              <AditionalInformation />
             </div>
           </div>
         </div>

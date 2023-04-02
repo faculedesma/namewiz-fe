@@ -1,0 +1,35 @@
+@import '../../utils/variables';
+
+.aditional {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  &-input {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+
+    input {
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+    }
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+
+    span {
+      color: $highlight-color;
+    }
+
+    .error {
+      color: $red-error;
+    }
+  }
+}

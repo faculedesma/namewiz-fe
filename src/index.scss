@@ -50,6 +50,7 @@ p {
 }
 
 input {
+  box-sizing: border-box;
   border-radius: 0.25rem;
   border: 2px solid $secondary-color;
   background: none;
@@ -100,5 +101,19 @@ button:focus-visible {
   :root {
     color: $secondary-color;
     background-color: rgba($primary-color, 0.87);
+  }
+}
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  body {
+    overflow: auto;
+  }
+}
+
+/* Tablets (portrait) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  body {
+    overflow: auto;
   }
 }
