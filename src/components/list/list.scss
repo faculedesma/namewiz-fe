@@ -44,12 +44,11 @@
         cursor: pointer;
         margin-top: 1rem;
         color: $secondary-color;
-        transition: all ease-in-out $golden-ratio-time / 16;
+        transition: all ease-in-out $golden-ratio-time / 8;
 
         &:hover {
           color: $shades-black;
-          transition: all ease-in-out $golden-ratio-time /
-            16;
+          transition: all ease-in-out $golden-ratio-time / 8;
         }
       }
     }
@@ -57,19 +56,18 @@
 }
 
 .open {
-  animation: open-list calc($golden-ratio-time / 16)
+  animation: open-list calc($golden-ratio-time / 8)
     ease-in-out forwards;
 }
 
 .close {
-  animation: close-list calc($golden-ratio-time / 16)
+  animation: close-list calc($golden-ratio-time / 8)
     ease-in-out forwards;
 }
 
 @keyframes open-list {
   0% {
     transform: scaleY(0);
-    transform-origin: top;
   }
 
   100% {
@@ -80,7 +78,6 @@
 @keyframes close-list {
   0% {
     transform: scaleY(1);
-    transform-origin: bottom;
   }
 
   100% {
