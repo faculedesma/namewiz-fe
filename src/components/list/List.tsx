@@ -1,7 +1,9 @@
 import React, {
   useState,
   useImperativeHandle,
-  forwardRef
+  forwardRef,
+  useEffect,
+  useRef
 } from 'react';
 import './list.scss';
 
@@ -26,9 +28,10 @@ const List = forwardRef<ListRef, ListProps>(
     const [search, setSearch] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
+    const listRef = useRef<HTMLDivElement>(null);
+
     const handleItemClick = (item: ListItem) => {
       props.onSelect(item);
-      setIsOpen(false);
     };
 
     const handleSearchChange = (
@@ -56,12 +59,18 @@ const List = forwardRef<ListRef, ListProps>(
       close: handleClose
     }));
 
+    useEffect(() => {
+      if (isOpen && listRef.current) {
+        listRef.current.classList.add('open');
+        listRef.current.classList.remove('close');
+      } else if (!isOpen && listRef.current) {
+        listRef.current.classList.add('close');
+        listRef.current.classList.remove('open');
+      }
+    }, [isOpen]);
+
     return (
-      <div
-        className={`generic-list ${
-          isOpen ? 'open' : 'closed'
-        }`}
-      >
+      <div ref={listRef} className="generic-list">
         <input
           type="text"
           value={search}
