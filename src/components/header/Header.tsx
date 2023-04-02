@@ -17,7 +17,7 @@ const Header = () => {
             <div className="header-right--links">
               <a
                 className="instagram"
-                href=""
+                href="https://www.instagram.com/faculedesma73/"
                 target="_blank"
                 aria-label="Go to Wisian's Instagram account."
               >
@@ -25,7 +25,7 @@ const Header = () => {
               </a>
               <a
                 className="twitter"
-                href=""
+                href="https://twitter.com/faculedesma93"
                 target="_blank"
                 aria-label="Go to Wisian's Twitter account."
               >

@@ -81,7 +81,7 @@ export const ZodiacSigns = () => {
 
   const handleSingSelect = (id: string) => {
     let updatedSelected;
-    if (selected.length < 3) {
+    if (selected.length < 3 && !selected.includes(id)) {
       updatedSelected = [...selected, id];
       setSelected(updatedSelected);
       return;
@@ -94,6 +94,8 @@ export const ZodiacSigns = () => {
     }
   };
 
+  const isSelected = (id: string) => selected.includes(id);
+
   return (
     <div className="zodiac">
       <h3>Zodiac signs:</h3>
@@ -103,9 +105,7 @@ export const ZodiacSigns = () => {
             <div
               key={sign.id}
               className={`zodiac-signs--item ${
-                selected.includes(sign.id)
-                  ? 'sign-active'
-                  : ''
+                isSelected(sign.id) ? 'sign-active' : ''
               }`}
               onClick={() => handleSingSelect(sign.id)}
             >
