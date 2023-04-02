@@ -57,11 +57,11 @@ const Content = () => {
             </div>
             <div className="content-right--filters-second">
               <Nationality />
+              <Gender />
+              <Longitude />
             </div>
             <div className="content-right--filters-third">
               <LetterStart />
-              <Gender />
-              <Longitude />
             </div>
             <div className="content-right--filters-five">
               <AditionalInformation />

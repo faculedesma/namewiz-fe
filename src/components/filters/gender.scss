@@ -8,17 +8,17 @@
 
   &-input {
     position: relative;
+    width: 100px;
 
     &--top {
       cursor: pointer;
-      width: auto;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: 0.75rem;
 
       p {
-        max-width: fit-content;
+        max-width: 50%;
         font-weight: 300;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -28,7 +28,6 @@
 
       &-right {
         &--arrow {
-          width: 30px;
           display: flex;
           align-items: center;
         }

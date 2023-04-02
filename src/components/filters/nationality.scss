@@ -6,22 +6,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
   }
 
   &-input {
     position: relative;
-    width: 175px;
+    width: 140px;
 
     &--top {
       cursor: pointer;
       width: auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 0.75rem;
 
       p {
-        max-width: 40%;
+        max-width: 50%;
         font-weight: 300;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -59,8 +60,6 @@
         }
 
         &--arrow {
-          height: 30px;
-          width: 30px;
           display: flex;
           align-items: center;
         }
