@@ -35,6 +35,11 @@
       animation: fade-in calc($golden-ratio-time / 2)
         ease-in-out forwards;
 
+      form {
+        height: 80px;
+        overflow: visible;
+      }
+
       label {
         text-transform: uppercase;
         font-weight: bold;
@@ -73,6 +78,13 @@
             }
           }
         }
+      }
+
+      &-error {
+        position: absolute;
+        bottom: -10px;
+        color: $red-error;
+        font-size: $paragraph-two-size;
       }
     }
   }

@@ -14,11 +14,20 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import './content.scss';
 
 const Content = () => {
-  const [text, setText] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>
-  ) => setText(e.target.value);
+  ) => {
+    const inputEmail = e.target.value;
+    setEmail(inputEmail);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsValid(
+      emailRegex.test(inputEmail) ||
+        !Boolean(inputEmail.length)
+    );
+  };
 
   const handleSubscribeNewsletter = (
     e: FormEvent<HTMLFormElement>
@@ -43,12 +52,19 @@ const Content = () => {
               <div className="content-left--input-box">
                 <input
                   type="text"
-                  value={text}
+                  value={email}
                   onChange={handleInputChange}
                   placeholder="Email"
                 />
                 <ArrowRight />
               </div>
+              {!isValid ? (
+                <p className="content-left--input-error">
+                  Please enter a valid email address
+                </p>
+              ) : (
+                <p></p>
+              )}
             </form>
           </div>
         </div>
