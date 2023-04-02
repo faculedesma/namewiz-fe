@@ -17,6 +17,7 @@ type ListProps = {
   onSelect: (item: ListItem) => void;
   includeSearch?: boolean;
   searchPlaceholder?: string;
+  closeOnClick?: boolean;
 };
 
 export type ListRef = {
@@ -33,7 +34,9 @@ const List = forwardRef<ListRef, ListProps>(
 
     const handleItemClick = (item: ListItem) => {
       props.onSelect(item);
-      setIsOpen(false);
+      if (props.closeOnClick) {
+        setIsOpen(false);
+      }
     };
 
     const handleSearchChange = (
@@ -99,7 +102,8 @@ const List = forwardRef<ListRef, ListProps>(
 );
 
 List.defaultProps = {
-  includeSearch: true
+  includeSearch: true,
+  closeOnClick: true
 };
 
 export default List;

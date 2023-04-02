@@ -1,0 +1,41 @@
+@import '../../utils/variables';
+
+.nature {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-input {
+    position: relative;
+
+    &--top {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+
+      p {
+        padding: 0.5rem;
+        max-width: 50%;
+        font-weight: bold;
+        font-size: $paragraph-two-size;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        margin: 0;
+        border: 1.5px solid $highlight-color;
+        border-radius: 0.25rem;
+      }
+
+      &-right {
+        &--arrow {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

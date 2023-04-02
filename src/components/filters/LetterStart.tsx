@@ -18,7 +18,7 @@ export const LetterStart = () => {
 
   return (
     <div className="letter-start">
-      <h3>Starts with</h3>
+      <h3>Starts</h3>
       <input
         type="text"
         value={letter}

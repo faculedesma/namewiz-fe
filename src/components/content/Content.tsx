@@ -8,6 +8,8 @@ import { LetterStart } from '@components/filters/LetterStart';
 import { Gender } from '@components/filters/Gender';
 import { Longitude } from '@components/filters/Longitude';
 import { AditionalInformation } from '@components/filters/AditionalInformation';
+import { PersonalityTraits } from '@components/filters/PersonalityTraits';
+import { NatureInspired } from '@components/filters/NatureInspired';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import './content.scss';
 
@@ -59,11 +61,13 @@ const Content = () => {
               <Nationality />
               <Gender />
               <Longitude />
-            </div>
-            <div className="content-right--filters-third">
               <LetterStart />
             </div>
-            <div className="content-right--filters-five">
+            <div className="content-right--filters-third">
+              <PersonalityTraits />
+              <NatureInspired />
+            </div>
+            <div className="content-right--filters-four">
               <AditionalInformation />
             </div>
             <div className="content-right--filters-cta">
