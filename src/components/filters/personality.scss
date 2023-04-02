@@ -30,7 +30,7 @@
         border: 1.5px solid $highlight-color;
         border-radius: 0.25rem;
         transform: scale(0);
-        animation: scale-up calc($golden-ratio-time / 8)
+        animation: scale-show calc($golden-ratio-time / 8)
           ease-in-out forwards;
       }
 
@@ -44,16 +44,31 @@
           align-items: center;
         }
       }
+
+      .hide {
+        animation: scale-hide calc($golden-ratio-time / 16)
+          ease-in-out forwards;
+      }
     }
   }
 }
 
-@keyframes scale-up {
+@keyframes scale-show {
   0% {
     transform: scale(0);
   }
 
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes scale-hide {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
   }
 }

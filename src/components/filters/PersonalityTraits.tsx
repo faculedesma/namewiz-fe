@@ -34,11 +34,15 @@ export const PersonalityTraits = () => {
       (pers) => pers.key === key
     );
     if (isSelected) {
-      setSelectedPersonality(
-        selectedPersonalities.filter(
-          (pers) => pers.key !== key
-        )
-      );
+      const chip = document.getElementById(key);
+      chip?.classList.add('hide');
+      setTimeout(() => {
+        setSelectedPersonality(
+          selectedPersonalities.filter(
+            (pers) => pers.key !== key
+          )
+        );
+      }, 101.125);
     } else if (selectedPersonalities.length < 3) {
       const newSelected = personalityTraits.find(
         (personality) => personality.key === key
@@ -77,7 +81,7 @@ export const PersonalityTraits = () => {
         >
           {selectedPersonalities.length ? (
             selectedPersonalities.map((pers) => {
-              return <p>{pers.label}</p>;
+              return <p id={pers.key}>{pers.label}</p>;
             })
           ) : (
             <span>Select</span>

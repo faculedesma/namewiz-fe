@@ -32,12 +32,18 @@ export const NatureInspired = () => {
 
   const handleNatureSelect = (key: string) => {
     const isSelected = selectedNature.find(
-      (pers) => pers.key === key
+      (nature) => nature.key === key
     );
     if (isSelected) {
-      setSelectedNature(
-        selectedNature.filter((pers) => pers.key !== key)
-      );
+      const chip = document.getElementById(key);
+      chip?.classList.add('hide');
+      setTimeout(() => {
+        setSelectedNature(
+          selectedNature.filter(
+            (nature) => nature.key !== key
+          )
+        );
+      }, 101.125);
     } else if (selectedNature.length < 3) {
       const newSelected = natureInspired.find(
         (nature) => nature.key === key
@@ -69,8 +75,8 @@ export const NatureInspired = () => {
           onClick={handleOpen}
         >
           {selectedNature.length ? (
-            selectedNature.map((pers) => {
-              return <p>{pers.label}</p>;
+            selectedNature.map((nature) => {
+              return <p id={nature.key}>{nature.label}</p>;
             })
           ) : (
             <span>Select</span>
