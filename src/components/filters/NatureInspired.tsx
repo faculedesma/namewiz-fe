@@ -76,10 +76,14 @@ export const NatureInspired = () => {
         >
           {selectedNature.length ? (
             selectedNature.map((nature) => {
-              return <p id={nature.key}>{nature.label}</p>;
+              return (
+                <p key={nature.key} id={nature.key}>
+                  {nature.label}
+                </p>
+              );
             })
           ) : (
-            <span>Select</span>
+            <span>Select max. 3</span>
           )}
         </div>
         <List

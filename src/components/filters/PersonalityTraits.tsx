@@ -81,10 +81,14 @@ export const PersonalityTraits = () => {
         >
           {selectedPersonalities.length ? (
             selectedPersonalities.map((pers) => {
-              return <p id={pers.key}>{pers.label}</p>;
+              return (
+                <p key={pers.key} id={pers.key}>
+                  {pers.label}
+                </p>
+              );
             })
           ) : (
-            <span>Select</span>
+            <span>Select max. 3</span>
           )}
         </div>
         <List
