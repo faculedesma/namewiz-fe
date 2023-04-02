@@ -71,6 +71,7 @@ export const Longitude = () => {
         </div>
         <List
           ref={longitudeListRef}
+          includeSearch={false}
           items={longitudes}
           onSelect={(item) =>
             handleLongitudeSelect(item.key)

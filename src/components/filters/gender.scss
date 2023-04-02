@@ -8,14 +8,14 @@
 
   &-input {
     position: relative;
-    width: 175px;
+    width: 150px;
 
     &--top {
       cursor: pointer;
       width: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 0.75rem;
 
       p {
@@ -28,34 +28,6 @@
       }
 
       &-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 1rem;
-
-        &--flag {
-          width: 30px;
-          height: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          background-color: $shades-gray-200;
-          overflow: hidden;
-          border: 1px solid rgba($shades-gray-200, 0.2);
-
-          img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          }
-
-          .loader {
-            width: 50%;
-            height: 50%;
-          }
-        }
-
         &--arrow {
           width: 30px;
           display: flex;
