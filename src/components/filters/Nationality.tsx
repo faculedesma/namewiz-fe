@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChangeEvent } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import { Loader } from '@components/loader/Loader';
+import List from '@components/list/List';
 import './nationality.scss';
 
 const COUNTRIES_URL =
@@ -53,65 +53,28 @@ const Country = ({
     }
   }, [countries]);
 
-  const handleCountrySearch = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const searchValue = e.target.value;
-    setSearch(searchValue);
-    const filtered = countries.filter((country) => {
-      return country.name
-        .toLowerCase()
-        .includes(searchValue.toLowerCase());
-    });
-    setFilteredCountries(filtered);
-  };
-
-  const handleCloseList = () => {
-    if (countryListRef.current) {
-      if (
-        countryListRef.current.classList.contains(
-          'show-list'
-        )
-      ) {
-        countryListRef.current.classList.add('hide-list');
-        countryListRef.current.classList.remove(
-          'show-list'
-        );
-      }
-    }
-  };
-
-  const handleOpenList = () => {
-    if (countryListRef.current) {
-      if (
-        !countryListRef.current.classList.contains(
-          'show-list'
-        )
-      ) {
-        countryListRef.current.classList.remove(
-          'hide-list'
-        );
-        countryListRef.current.classList.add('show-list');
-      } else {
-        handleCloseList();
-      }
-    }
-  };
-
-  const handleCountryClick = (name: string) => {
+  const handleCountrySelect = (name: string) => {
     const newSelected = filteredCountries.find(
       (country) => country.name === name
     );
     setSelectedCountry(newSelected!);
   };
 
-  useClickOutside(countryRef, handleCloseList);
+  const handleOpen = () => {
+    countryListRef.current?.open();
+  };
+
+  const handleClose = () => {
+    countryListRef.current?.close();
+  };
+
+  useClickOutside(countryRef, handleClose);
 
   return (
     <div ref={countryRef} className="nationality-input">
       <div
         className="nationality-input--top"
-        onClick={handleOpenList}
+        onClick={handleOpen}
       >
         <p>{selectedCountry.name}</p>
         <div className="nationality-input--top-right">
@@ -130,32 +93,14 @@ const Country = ({
           </div>
         </div>
       </div>
-      <div
+      <List
         ref={countryListRef}
-        className="nationality-input--list"
-      >
-        <ul>
-          <li>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => handleCountrySearch(e)}
-            />{' '}
-          </li>
-          {filteredCountries.map((country) => {
-            return (
-              <li
-                key={country.name}
-                onClick={() =>
-                  handleCountryClick(country.name)
-                }
-              >
-                {country.name}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+        items={filteredCountries.map((country) => ({
+          key: country.name,
+          label: country.name
+        }))}
+        onSelect={(item) => handleCountrySelect(item.key)}
+      />
     </div>
   );
 };
