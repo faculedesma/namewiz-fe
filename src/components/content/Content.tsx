@@ -5,6 +5,7 @@ import { Formule } from '@assets/svgs/Formule';
 import { ZodiacSigns } from '@components/filters/ZodiacSigns';
 import { Nationality } from '@components/filters/Nationality';
 import { LetterStart } from '@components/filters/LetterStart';
+import { Gender } from '@components/filters/Gender';
 import './content.scss';
 
 const Content = () => {
@@ -50,6 +51,7 @@ const Content = () => {
           <ZodiacSigns />
           <Nationality />
           <LetterStart />
+          <Gender />
         </div>
         <div className="content-bg">
           <Formule />

@@ -32,8 +32,8 @@
 
     &--input {
       margin-top: 4rem;
-      animation: fade-in $golden-ratio-time / 2 ease-in-out
-        forwards;
+      animation: fade-in calc($golden-ratio-time / 2)
+        ease-in-out forwards;
 
       label {
         text-transform: uppercase;
@@ -61,14 +61,14 @@
           path {
             fill: $highlight-color;
             transform: scale(1);
-            transition: all $golden-ratio-time / 8
+            transition: all calc($golden-ratio-time / 8)
               ease-in-out;
           }
 
           &:hover {
             path {
               transform: scale(0.9);
-              transition: all $golden-ratio-time / 8
+              transition: all calc($golden-ratio-time / 8)
                 ease-in-out;
             }
           }

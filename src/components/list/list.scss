@@ -53,13 +53,13 @@
 }
 
 .open {
-  animation: open-list $golden-ratio-time / 16 ease-in-out
-    forwards;
+  animation: open-list calc($golden-ratio-time / 16)
+    ease-in-out forwards;
 }
 
 .close {
-  animation: close-list $golden-ratio-time / 16 ease-in-out
-    forwards;
+  animation: close-list calc($golden-ratio-time / 16)
+    ease-in-out forwards;
 }
 
 @keyframes open-list {
