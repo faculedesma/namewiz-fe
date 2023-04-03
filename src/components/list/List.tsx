@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useRef
 } from 'react';
+import { CheckIcon } from '@assets/svgs/CheckIcon';
 import './list.scss';
 
 type ListItem = {
@@ -18,6 +19,7 @@ type ListProps = {
   includeSearch?: boolean;
   searchPlaceholder?: string;
   closeOnClick?: boolean;
+  multiple?: boolean;
 };
 
 export type ListRef = {
@@ -29,11 +31,30 @@ const List = forwardRef<ListRef, ListProps>(
   (props, ref) => {
     const [search, setSearch] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedItems, setSelectedItems] = useState<
+      string[]
+    >([]);
 
     const listRef = useRef<HTMLDivElement>(null);
 
     const handleItemClick = (item: ListItem) => {
       props.onSelect(item);
+      if (props.multiple) {
+        if (selectedItems.includes(item.key)) {
+          setSelectedItems((prevItems) =>
+            prevItems.filter(
+              (currentItem) => currentItem !== item.key
+            )
+          );
+        } else {
+          setSelectedItems((prevItems) => [
+            ...prevItems,
+            item.key
+          ]);
+        }
+      } else {
+        setSelectedItems([item.key]);
+      }
       if (props.closeOnClick) {
         setIsOpen(false);
       }
@@ -93,6 +114,9 @@ const List = forwardRef<ListRef, ListProps>(
               onClick={() => handleItemClick(item)}
             >
               {item.label}
+              {selectedItems.includes(item.key) && (
+                <CheckIcon />
+              )}
             </li>
           ))}
         </ul>

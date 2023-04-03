@@ -114,6 +114,7 @@ export const PersonalityTraits = () => {
             handlePersonalitySelect(item.key)
           }
           closeOnClick={false}
+          multiple
         />
       </div>
     </div>
