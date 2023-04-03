@@ -86,7 +86,9 @@ const Country = ({
         className="nationality-input--top"
         onClick={handleOpen}
       >
-        <p>{selectedCountry.name}</p>
+        <p title={selectedCountry.name}>
+          {selectedCountry.name}
+        </p>
         <div className="nationality-input--top-right">
           <div className="nationality-input--top-right--flag">
             {selectedCountry.flagUrl ? (

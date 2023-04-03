@@ -66,7 +66,9 @@ export const Gender = () => {
           className="gender-input--top"
           onClick={handleOpen}
         >
-          <p>{selectedGender.label}</p>
+          <p title={selectedGender.label}>
+            {selectedGender.label}
+          </p>
           <div className="gender-input--top-right">
             <div className="gender-input--top-right--arrow">
               <ArrowDown />
