@@ -35,3 +35,19 @@
     }
   }
 }
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .gender {
+    width: calc(100% / 3);
+
+    &-input {
+      width: 100%;
+      &--top {
+        p {
+          max-width: unset;
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  overflow: hidden;
 }
 
 #root {
@@ -106,10 +105,9 @@ button:focus-visible {
 
 /* Smartphones (portrait and landscape) */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-  body {
-    overflow: auto;
+  input {
+    font-size: $paragraph-two-size-mobile;
   }
-
   h1 {
     font-size: $heading-one-size-mobile;
   }
@@ -130,7 +128,4 @@ button:focus-visible {
 
 /* Tablets (portrait) */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-  body {
-    overflow: auto;
-  }
 }

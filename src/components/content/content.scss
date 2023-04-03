@@ -191,20 +191,23 @@
     &-right {
       &--filters {
         &-first {
-          height: auto;
+          width: 100%;
         }
 
         &-second {
+          margin-top: 1.5rem;
           height: auto;
           flex-direction: column;
 
           &-shorts {
+            margin-top: 1.5rem;
             width: 100%;
             justify-content: flex-start;
           }
         }
 
         &-third {
+          margin-top: 1.5rem;
           flex-direction: column;
         }
       }
@@ -213,6 +216,9 @@
     &-bg {
       left: -50px;
       top: 100px;
+      max-width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
 
       svg {
         width: 500px;

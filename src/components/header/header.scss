@@ -98,7 +98,8 @@ header {
     height: 90px;
 
     &-right {
-      justify-content: space-around;
+      justify-content: flex-end;
+      gap: 2rem;
     }
   }
 }
