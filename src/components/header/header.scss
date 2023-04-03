@@ -91,3 +91,14 @@ header {
     }
   }
 }
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .header {
+    height: 90px;
+
+    &-right {
+      justify-content: space-around;
+    }
+  }
+}

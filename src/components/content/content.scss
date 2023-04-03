@@ -101,15 +101,19 @@
       animation: reveal-filters calc($golden-ratio-time / 2)
         ease-in-out forwards;
 
-      &-first {
-      }
-
       &-second {
         margin-top: 2rem;
-        height: 73px;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+
+        &-shorts {
+          height: 73px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+        }
       }
 
       &-third {
@@ -178,6 +182,43 @@
   .content {
     flex-direction: column;
     justify-content: center;
+
+    &-left,
+    &-right {
+      width: 100%;
+    }
+
+    &-right {
+      &--filters {
+        &-first {
+          height: auto;
+        }
+
+        &-second {
+          height: auto;
+          flex-direction: column;
+
+          &-shorts {
+            width: 100%;
+            justify-content: flex-start;
+          }
+        }
+
+        &-third {
+          flex-direction: column;
+        }
+      }
+    }
+
+    &-bg {
+      left: -50px;
+      top: 100px;
+
+      svg {
+        width: 500px;
+        height: 500px;
+      }
+    }
   }
 }
 

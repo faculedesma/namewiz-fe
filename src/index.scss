@@ -109,6 +109,23 @@ button:focus-visible {
   body {
     overflow: auto;
   }
+
+  h1 {
+    font-size: $heading-one-size-mobile;
+  }
+
+  h2 {
+    font-size: $heading-two-size-mobile;
+  }
+
+  h3 {
+    font-size: $heading-three-size-mobile;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: $paragraph-one-size-mobile;
+  }
 }
 
 /* Tablets (portrait) */

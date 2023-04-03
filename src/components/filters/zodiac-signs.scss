@@ -70,3 +70,13 @@
     }
   }
 }
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .zodiac {
+    &-signs {
+      width: 68%;
+      height: auto;
+    }
+  }
+}

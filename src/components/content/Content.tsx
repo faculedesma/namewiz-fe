@@ -75,9 +75,11 @@ const Content = () => {
             </div>
             <div className="content-right--filters-second">
               <Nationality />
-              <Gender />
-              <Longitude />
-              <LetterStart />
+              <div className="content-right--filters-second-shorts">
+                <Gender />
+                <Longitude />
+                <LetterStart />
+              </div>
             </div>
             <div className="content-right--filters-third">
               <PersonalityTraits />
