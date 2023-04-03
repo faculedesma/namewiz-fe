@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { ChangeEvent } from 'react';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './letter-start.scss';
 
 export const LetterStart = () => {
   const [letter, setLetter] = useState<string>('');
+
+  const { updateFilters } = useFiltersContext();
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>
@@ -11,8 +14,10 @@ export const LetterStart = () => {
     const text = e.target.value;
     if (/^[a-zA-Z]*$/.test(text)) {
       setLetter(text.charAt(text.length - 1));
+      updateFilters('start', text.charAt(text.length - 1));
     } else if (!text) {
       setLetter('');
+      updateFilters('start', '');
     }
   };
 

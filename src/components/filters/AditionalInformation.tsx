@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react';
 import { ChangeEvent } from 'react';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './aditional.scss';
 
 export const AditionalInformation = () => {
   const [text, setText] = useState<string>('');
+
+  const { updateFilters } = useFiltersContext();
 
   const lengthRef = useRef<HTMLDivElement>(null);
 
@@ -21,6 +24,7 @@ export const AditionalInformation = () => {
       }
     }
     setText(updated);
+    updateFilters('aditional', updated);
   };
 
   return (

@@ -3,6 +3,7 @@ import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import { Loader } from '@components/loader/Loader';
 import List, { ListRef } from '@components/list/List';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './nationality.scss';
 
 const COUNTRIES_URL =
@@ -39,6 +40,8 @@ const Country = ({
   const [selectedCountry, setSelectedCountry] =
     useState<Country>(defaultEmptyCountry);
 
+  const { filters, updateFilters } = useFiltersContext();
+
   const countryRef = useRef<HTMLDivElement>(null);
   const countryListRef = useRef<ListRef>(null);
 
@@ -57,6 +60,10 @@ const Country = ({
       (country) => country.name === name
     );
     setSelectedCountry(newSelected!);
+    updateFilters('nationality', [
+      ...filters.nationality,
+      newSelected!.name
+    ]);
   };
 
   const handleOpen = () => {

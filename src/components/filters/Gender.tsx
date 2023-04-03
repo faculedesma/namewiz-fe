@@ -3,6 +3,7 @@ import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { genders } from '@constants/filters';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './gender.scss';
 
 const defaultGender = 'male';
@@ -21,6 +22,8 @@ export const Gender = () => {
   const [selectedGender, setSelectedGender] =
     useState<Gender>(defaultEmptyGender);
 
+  const { updateFilters } = useFiltersContext();
+
   const genderRef = useRef<HTMLDivElement>(null);
   const genderListRef = useRef<ListRef>(null);
 
@@ -38,6 +41,7 @@ export const Gender = () => {
       (gender) => gender.key === key
     );
     setSelectedGender(newSelected!);
+    updateFilters('gender', newSelected!.key);
   };
 
   const handleOpen = () => {

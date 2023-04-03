@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { natureInspired } from '@constants/filters';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './nature-inspired.scss';
 
 const defaultEmptyNature = [
@@ -21,6 +22,8 @@ export const NatureInspired = () => {
     Nature[]
   >(defaultEmptyNature);
 
+  const { updateFilters } = useFiltersContext();
+
   const natureRef = useRef<HTMLDivElement>(null);
   const natureListRef = useRef<ListRef>(null);
 
@@ -38,17 +41,28 @@ export const NatureInspired = () => {
       const chip = document.getElementById(key);
       chip?.classList.add('hide');
       setTimeout(() => {
-        setSelectedNature(
-          selectedNature.filter(
-            (nature) => nature.key !== key
-          )
+        const updatedNature = selectedNature.filter(
+          (nature) => nature.key !== key
+        );
+        setSelectedNature(updatedNature);
+        updateFilters(
+          'nature',
+          updatedNature.map((nature) => nature.key)
         );
       }, 101.125);
     } else if (selectedNature.length < 3) {
       const newSelected = natureInspired.find(
         (nature) => nature.key === key
       );
-      setSelectedNature([...selectedNature, newSelected!]);
+      const updatedNature = [
+        ...selectedNature,
+        newSelected!
+      ];
+      setSelectedNature(updatedNature);
+      updateFilters(
+        'nature',
+        updatedNature.map((nature) => nature.key)
+      );
     }
   };
 

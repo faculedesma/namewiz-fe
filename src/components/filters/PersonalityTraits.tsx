@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { personalityTraits } from '@constants/filters';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './personality.scss';
 
 const defaultEmptyPersonality = [
@@ -20,6 +21,8 @@ export const PersonalityTraits = () => {
   const [selectedPersonalities, setSelectedPersonality] =
     useState<Personality[]>(defaultEmptyPersonality);
 
+  const { updateFilters } = useFiltersContext();
+
   const personalityRef = useRef<HTMLDivElement>(null);
   const personalityListRef = useRef<ListRef>(null);
 
@@ -37,20 +40,29 @@ export const PersonalityTraits = () => {
       const chip = document.getElementById(key);
       chip?.classList.add('hide');
       setTimeout(() => {
-        setSelectedPersonality(
+        const updatedPersonalities =
           selectedPersonalities.filter(
             (pers) => pers.key !== key
-          )
+          );
+        setSelectedPersonality(updatedPersonalities);
+        updateFilters(
+          'personality',
+          updatedPersonalities.map((pers) => pers.key)
         );
       }, 101.125);
     } else if (selectedPersonalities.length < 3) {
       const newSelected = personalityTraits.find(
         (personality) => personality.key === key
       );
-      setSelectedPersonality([
+      const updatedPersonalities = [
         ...selectedPersonalities,
         newSelected!
-      ]);
+      ];
+      setSelectedPersonality(updatedPersonalities);
+      updateFilters(
+        'personality',
+        updatedPersonalities.map((pers) => pers.key)
+      );
     }
   };
 

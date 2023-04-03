@@ -3,6 +3,7 @@ import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { longitudes } from '@constants/filters';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './longitude.scss';
 
 const defaultLongitude = 'short';
@@ -21,6 +22,8 @@ export const Longitude = () => {
   const [selectedLongitude, setSelectedLongitude] =
     useState<Longitude>(defaultEmptyLongitude);
 
+  const { updateFilters } = useFiltersContext();
+
   const longitudeRef = useRef<HTMLDivElement>(null);
   const longitudeListRef = useRef<ListRef>(null);
 
@@ -38,6 +41,7 @@ export const Longitude = () => {
       (longitude) => longitude.key === key
     );
     setSelectedLongitude(newSelected!);
+    updateFilters('longitude', newSelected!.key);
   };
 
   const handleOpen = () => {
