@@ -77,7 +77,11 @@ export const NatureInspired = () => {
           {selectedNature.length ? (
             selectedNature.map((nature) => {
               return (
-                <p key={nature.key} id={nature.key}>
+                <p
+                  key={nature.key}
+                  id={nature.key}
+                  title={nature.label}
+                >
                   {nature.label}
                 </p>
               );
