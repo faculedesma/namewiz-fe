@@ -10,7 +10,7 @@ export const ZodiacSigns = () => {
 
   const handleSingSelect = (id: string) => {
     let updatedSelected;
-    if (selected.length < 3 && !selected.includes(id)) {
+    if (selected.length < 2 && !selected.includes(id)) {
       updatedSelected = [...selected, id];
       setSelected(updatedSelected);
       updateFilters('zodiac', updatedSelected);

@@ -6,6 +6,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #root {
@@ -105,6 +107,10 @@ button:focus-visible {
 
 /* Smartphones (portrait and landscape) */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
+  body {
+    overflow-y: auto;
+  }
+
   input {
     font-size: $paragraph-two-size-mobile;
   }
