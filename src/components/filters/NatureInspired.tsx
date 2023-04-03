@@ -110,6 +110,7 @@ export const NatureInspired = () => {
           onSelect={(item) => handleNatureSelect(item.key)}
           closeOnClick={false}
           multiple
+          maxSelected={3}
         />
       </div>
     </div>

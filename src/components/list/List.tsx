@@ -20,6 +20,7 @@ type ListProps = {
   searchPlaceholder?: string;
   closeOnClick?: boolean;
   multiple?: boolean;
+  maxSelected?: number;
 };
 
 export type ListRef = {
@@ -47,10 +48,12 @@ const List = forwardRef<ListRef, ListProps>(
             )
           );
         } else {
-          setSelectedItems((prevItems) => [
-            ...prevItems,
-            item.key
-          ]);
+          if (selectedItems.length < props.maxSelected!) {
+            setSelectedItems((prevItems) => [
+              ...prevItems,
+              item.key
+            ]);
+          }
         }
       } else {
         setSelectedItems([item.key]);
@@ -127,7 +130,9 @@ const List = forwardRef<ListRef, ListProps>(
 
 List.defaultProps = {
   includeSearch: true,
-  closeOnClick: true
+  closeOnClick: true,
+  multiple: false,
+  maxSelected: 1
 };
 
 export default List;
