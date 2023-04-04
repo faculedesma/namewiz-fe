@@ -2,6 +2,7 @@ import { Logo } from '@assets/svgs/Logo';
 import { Instagram } from '@assets/svgs/Instagram';
 import { Twitter } from '@assets/svgs/Twitter';
 import { User } from '@assets/svgs/User';
+import { Link } from 'react-router-dom';
 import './header.scss';
 
 const Header = () => {
@@ -33,7 +34,7 @@ const Header = () => {
               </a>
             </div>
             <div className="header-right--user">
-              <p>Log in</p>
+              <Link to="/login">Sign in</Link>
               <div className="header-right--user-pic">
                 <User />
               </div>

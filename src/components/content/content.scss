@@ -128,6 +128,13 @@
       &-four {
         width: 100%;
       }
+
+      &-cta {
+        p {
+          color: $red-error;
+          font-size: $paragraph-two-size;
+        }
+      }
     }
   }
 
