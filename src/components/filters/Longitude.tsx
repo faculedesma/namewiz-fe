@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { longitudes } from '@constants/filters';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './longitude.scss';
-
-const defaultLongitude = 'short';
 
 const defaultEmptyLongitude = {
   key: '',
@@ -26,15 +24,6 @@ export const Longitude = () => {
 
   const longitudeRef = useRef<HTMLDivElement>(null);
   const longitudeListRef = useRef<ListRef>(null);
-
-  useEffect(() => {
-    if (longitudes.length) {
-      const defaultSelected = longitudes.find(
-        (longitude) => longitude.key === defaultLongitude
-      );
-      setSelectedLongitude(defaultSelected!);
-    }
-  }, [longitudes]);
 
   const handleLongitudeSelect = (key: string) => {
     const newSelected = longitudes.find(
@@ -66,7 +55,11 @@ export const Longitude = () => {
           className="longitude-input--top"
           onClick={handleOpen}
         >
-          <p>{selectedLongitude.label}</p>
+          <p>
+            {selectedLongitude.key
+              ? selectedLongitude.label
+              : 'Select'}
+          </p>
           <div className="longitude-input--top-right">
             <div className="longitude-input--top-right--arrow">
               <ArrowDown />

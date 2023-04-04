@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
-import { Loader } from '@components/loader/Loader';
 import List, { ListRef } from '@components/list/List';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './nationality.scss';
@@ -28,15 +27,9 @@ type Country = {
 
 interface ICountryProps {
   countries: Country[];
-  defaultCountry: string;
 }
 
-const Country = ({
-  countries,
-  defaultCountry
-}: ICountryProps) => {
-  const [filteredCountries, setFilteredCountries] =
-    useState<Country[]>([]);
+const Country = ({ countries }: ICountryProps) => {
   const [selectedCountry, setSelectedCountry] =
     useState<Country>(defaultEmptyCountry);
 
@@ -45,18 +38,8 @@ const Country = ({
   const countryRef = useRef<HTMLDivElement>(null);
   const countryListRef = useRef<ListRef>(null);
 
-  useEffect(() => {
-    if (countries.length) {
-      const defaultSelected = countries.find(
-        (country) => country.name === defaultCountry
-      );
-      setFilteredCountries(countries);
-      setSelectedCountry(defaultSelected!);
-    }
-  }, [countries]);
-
   const handleCountrySelect = (name: string) => {
-    const newSelected = filteredCountries.find(
+    const newSelected = countries.find(
       (country) => country.name === name
     );
     setSelectedCountry(newSelected!);
@@ -87,7 +70,9 @@ const Country = ({
         onClick={handleOpen}
       >
         <p title={selectedCountry.name}>
-          {selectedCountry.name}
+          {selectedCountry.name
+            ? selectedCountry.name
+            : 'Select'}
         </p>
         <div className="nationality-input--top-right">
           <div className="nationality-input--top-right--flag">
@@ -97,7 +82,7 @@ const Country = ({
                 alt="flag"
               />
             ) : (
-              <Loader />
+              <p>F</p>
             )}
           </div>
           <div className="nationality-input--top-right--arrow">
@@ -107,7 +92,7 @@ const Country = ({
       </div>
       <List
         ref={countryListRef}
-        items={filteredCountries.map((country) => ({
+        items={countries.map((country) => ({
           key: country.name,
           label: country.name
         }))}
@@ -138,14 +123,8 @@ export const Nationality = () => {
     <div className="nationality">
       <h3>Nationality</h3>
       <div className="nationality-options">
-        <Country
-          countries={countries}
-          defaultCountry="Argentina"
-        />
-        <Country
-          countries={countries}
-          defaultCountry="Spain"
-        />
+        <Country countries={countries} />
+        <Country countries={countries} />
       </div>
     </div>
   );

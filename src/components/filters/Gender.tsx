@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
 import { genders } from '@constants/filters';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './gender.scss';
-
-const defaultGender = 'male';
 
 const defaultEmptyGender = {
   key: '',
@@ -26,15 +24,6 @@ export const Gender = () => {
 
   const genderRef = useRef<HTMLDivElement>(null);
   const genderListRef = useRef<ListRef>(null);
-
-  useEffect(() => {
-    if (genders.length) {
-      const defaultSelected = genders.find(
-        (gender) => gender.key === defaultGender
-      );
-      setSelectedGender(defaultSelected!);
-    }
-  }, [genders]);
 
   const handleGenderSelect = (key: string) => {
     const newSelected = genders.find(
@@ -67,7 +56,9 @@ export const Gender = () => {
           onClick={handleOpen}
         >
           <p title={selectedGender.label}>
-            {selectedGender.label}
+            {selectedGender.key
+              ? selectedGender.label
+              : 'Select'}
           </p>
           <div className="gender-input--top-right">
             <div className="gender-input--top-right--arrow">
