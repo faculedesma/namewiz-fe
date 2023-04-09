@@ -57,13 +57,17 @@ header {
     }
 
     &--user {
-      width: 40%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
 
       a {
         cursor: pointer;
+        font-weight: bold;
+      }
+
+      p {
         font-weight: bold;
       }
 
@@ -76,6 +80,7 @@ header {
         height: 40px;
         border-radius: 50%;
         border: 1px solid $secondary-color;
+        overflow: hidden;
         transform: scale(1);
         transition: calc($golden-ratio-time / 4) ease-in;
 
@@ -84,9 +89,17 @@ header {
           transition: calc($golden-ratio-time / 4) ease-out;
         }
 
+        img {
+          width: 100%;
+        }
+
         svg {
           fill: $highlight-color;
         }
+      }
+
+      .no-border {
+        border: none;
       }
     }
   }

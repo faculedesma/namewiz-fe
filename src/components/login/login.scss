@@ -4,11 +4,40 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  opacity: 0;
+  animation: fade-in calc($golden-ratio-time / 8)
+    ease-in-out forwards;
+
+  &-left,
+  &-right {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-left {
+    background-color: rgba($highlight-color, 0.8);
+    flex-direction: column;
+
+    h2 {
+      color: $primary-color;
+
+      b {
+        color: $secondary-color;
+      }
+    }
+  }
+
+  &-right {
+  }
 
   &-page {
+    height: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +46,8 @@
     width: 350px;
     border: 2px solid $secondary-color;
     border-radius: 0.25rem;
-    box-shadow: 0px 0px 2px 2px rgba($shades-gray-200, 0.2);
+    box-shadow: 0px 0px 12px 12px
+      rgba($shades-gray-200, 0.3);
 
     &--header {
       width: 80%;
@@ -68,6 +98,27 @@
           color: $red-error;
           font-size: $paragraph-two-size;
         }
+
+        > div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          p,
+          a {
+            font-size: $paragraph-one-size;
+            font-weight: 300;
+          }
+
+          p {
+            color: $secondary-color;
+          }
+
+          a {
+            color: $highlight-color;
+            margin-left: 0.25rem;
+          }
+        }
       }
 
       &-separator {
@@ -90,22 +141,55 @@
 
       &-google {
         width: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
         margin-top: 1rem;
+      }
+    }
+  }
 
-        iframe {
-          div[id='button'] {
-            > div {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
+  &-bg {
+    position: absolute;
+    left: -100px;
+    top: 100px;
+    pointer-events: none;
 
-            span {
-              font-family: $primary-font-family !important;
-              max-width: fit-content;
-            }
-          }
-        }
+    svg {
+      width: 1000px;
+      height: 1000px;
+      opacity: 0.05;
+
+      path {
+        fill: $primary-color;
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .login {
+    &-bg {
+      left: -50px;
+      top: 100px;
+      max-width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+
+      svg {
+        width: 500px;
+        height: 500px;
       }
     }
   }

@@ -3,9 +3,12 @@ import { Instagram } from '@assets/svgs/Instagram';
 import { Twitter } from '@assets/svgs/Twitter';
 import { User } from '@assets/svgs/User';
 import { Link } from 'react-router-dom';
+import { useUserContext } from '@components/contexts/UserContext';
 import './header.scss';
 
 const Header = () => {
+  const { user } = useUserContext();
+
   return (
     <header>
       <div className="container">
@@ -34,9 +37,22 @@ const Header = () => {
               </a>
             </div>
             <div className="header-right--user">
-              <Link to="/login">Sign in</Link>
-              <div className="header-right--user-pic">
-                <User />
+              {user.name ? (
+                <p>{user.given_name}</p>
+              ) : (
+                <Link to="/login">Sign in</Link>
+              )}
+
+              <div
+                className={`header-right--user-pic ${
+                  user.picture ? 'no-border' : ''
+                }`}
+              >
+                {user.picture ? (
+                  <img src={user.picture} />
+                ) : (
+                  <User />
+                )}
               </div>
             </div>
           </div>

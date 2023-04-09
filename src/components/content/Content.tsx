@@ -11,11 +11,17 @@ import { AditionalInformation } from '@components/filters/AditionalInformation';
 import { PersonalityTraits } from '@components/filters/PersonalityTraits';
 import { NatureInspired } from '@components/filters/NatureInspired';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './content.scss';
 
 const Content = () => {
   const [email, setEmail] = useState<string>('');
-  const [isValid, setIsValid] = useState<boolean>(true);
+  const [isEmailValid, setIsEmailValid] =
+    useState<boolean>(true);
+  const [isFiltersValid, setIsFiltersValid] =
+    useState<boolean>(true);
+
+  const { filters } = useFiltersContext();
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>
@@ -23,7 +29,7 @@ const Content = () => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsValid(
+    setIsEmailValid(
       emailRegex.test(inputEmail) ||
         !Boolean(inputEmail.length)
     );
@@ -32,6 +38,12 @@ const Content = () => {
   const handleSubscribeNewsletter = (
     e: FormEvent<HTMLFormElement>
   ) => console.log(e);
+
+  const handleGetName = () => {
+    // at least one validation
+    setIsFiltersValid(false);
+    console.log(filters);
+  };
 
   return (
     <div className="container">
@@ -58,7 +70,7 @@ const Content = () => {
                 />
                 <ArrowRight />
               </div>
-              {!isValid ? (
+              {!isEmailValid ? (
                 <p className="content-left--input-error">
                   Please enter a valid email address
                 </p>
@@ -89,7 +101,13 @@ const Content = () => {
               <AditionalInformation />
             </div>
             <div className="content-right--filters-cta">
-              <PrimaryButton label="Get Names" />
+              <PrimaryButton
+                label="Get Names"
+                onClick={handleGetName}
+              />
+              {!isFiltersValid ? (
+                <p>At least one filter must be selected</p>
+              ) : null}
             </div>
           </div>
         </div>
