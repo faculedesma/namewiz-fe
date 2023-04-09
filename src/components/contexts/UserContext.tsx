@@ -15,7 +15,7 @@ const defaultUser = {
   picture: ''
 };
 
-interface UserState {
+export interface UserState {
   email: string;
   name: string;
   given_name: string;

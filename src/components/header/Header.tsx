@@ -1,13 +1,36 @@
+import { useState, useEffect, useRef } from 'react';
 import { Logo } from '@assets/svgs/Logo';
 import { Instagram } from '@assets/svgs/Instagram';
 import { Twitter } from '@assets/svgs/Twitter';
 import { User } from '@assets/svgs/User';
+import { UserProfile } from '@components/profile/UserProfile';
 import { Link } from 'react-router-dom';
 import { useUserContext } from '@components/contexts/UserContext';
+import { useClickOutside } from '@components/hooks/useClickOutside';
 import './header.scss';
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { user } = useUserContext();
+
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen && profileRef.current) {
+      profileRef.current.classList.remove('close');
+      profileRef.current.classList.add('open');
+    } else if (!isOpen && profileRef.current) {
+      profileRef.current.classList.add('close');
+      profileRef.current.classList.remove('open');
+    }
+  }, [isOpen]);
+
+  const handleOpen = () => setIsOpen(true);
+
+  const handleClose = () => setIsOpen(false);
+
+  useClickOutside(profileRef, handleClose);
 
   return (
     <header>
@@ -47,12 +70,19 @@ const Header = () => {
                 className={`header-right--user-pic ${
                   user.picture ? 'no-border' : ''
                 }`}
+                onClick={handleOpen}
               >
                 {user.picture ? (
                   <img src={user.picture} />
                 ) : (
                   <User />
                 )}
+              </div>
+              <div
+                ref={profileRef}
+                className="header-right--user-profile"
+              >
+                <UserProfile user={user} />
               </div>
             </div>
           </div>
