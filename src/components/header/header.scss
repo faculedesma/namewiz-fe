@@ -117,7 +117,7 @@ header {
           rgba($shades-gray-200, 0.2);
         overflow-y: scroll;
         background-color: $primary-color;
-        transform: scaleY(0);
+        transform: scale(0);
       }
 
       .no-border {
@@ -127,33 +127,37 @@ header {
   }
 }
 
-.open {
+.open-profile {
   animation: open-profile calc($golden-ratio-time / 8)
     ease-in-out forwards;
 }
 
-.close {
+.close-profile {
   animation: close-profile calc($golden-ratio-time / 8)
     ease-in-out forwards;
 }
 
 @keyframes open-profile {
   0% {
-    transform: scaleY(0);
+    transform-origin: top right;
+    transform: scale(0);
   }
 
   100% {
-    transform: scaleY(1);
+    transform-origin: top right;
+    transform: scale(1);
   }
 }
 
 @keyframes close-profile {
   0% {
-    transform: scaleY(1);
+    transform-origin: right top;
+    transform: scale(1);
   }
 
   100% {
-    transform: scaleY(0);
+    transform-origin: right top;
+    transform: scale(0);
   }
 }
 

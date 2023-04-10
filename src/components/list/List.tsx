@@ -93,8 +93,10 @@ const List = forwardRef<ListRef, ListProps>(
         listRef.current.classList.remove('close');
         listRef.current.classList.add('open');
       } else if (!isOpen && listRef.current) {
-        listRef.current.classList.add('close');
-        listRef.current.classList.remove('open');
+        if (listRef.current.classList.contains('open')) {
+          listRef.current.classList.add('close');
+          listRef.current.classList.remove('open');
+        }
       }
     }, [isOpen]);
 

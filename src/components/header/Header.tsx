@@ -18,11 +18,17 @@ const Header = () => {
 
   useEffect(() => {
     if (isOpen && profileRef.current) {
-      profileRef.current.classList.remove('close');
-      profileRef.current.classList.add('open');
+      profileRef.current.classList.remove('close-profile');
+      profileRef.current.classList.add('open-profile');
     } else if (!isOpen && profileRef.current) {
-      profileRef.current.classList.add('close');
-      profileRef.current.classList.remove('open');
+      if (
+        profileRef.current.classList.contains(
+          'open-profile'
+        )
+      ) {
+        profileRef.current.classList.add('close-profile');
+        profileRef.current.classList.remove('open-profile');
+      }
     }
   }, [isOpen]);
 

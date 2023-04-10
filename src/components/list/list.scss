@@ -73,20 +73,24 @@
 
 @keyframes open-list {
   0% {
+    transform-origin: center top;
     transform: scaleY(0);
   }
 
   100% {
+    transform-origin: center top;
     transform: scaleY(1);
   }
 }
 
 @keyframes close-list {
   0% {
+    transform-origin: center top;
     transform: scaleY(1);
   }
 
   100% {
+    transform-origin: center top;
     transform: scaleY(0);
   }
 }
