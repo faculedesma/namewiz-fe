@@ -15,7 +15,7 @@ const defaultUser = {
   picture: ''
 };
 
-export interface UserState {
+export interface IUser {
   email: string;
   name: string;
   given_name: string;
@@ -24,11 +24,8 @@ export interface UserState {
 }
 
 interface UserContextType {
-  user: UserState;
-  updateUser: <K extends keyof UserState>(
-    key: K,
-    value: UserState[K]
-  ) => void;
+  user: IUser;
+  updateUser: (newUser: IUser) => void;
 }
 
 interface UserContextProviderProps {
@@ -37,25 +34,25 @@ interface UserContextProviderProps {
 
 const UserContext = createContext<UserContextType>({
   user: defaultUser,
-  updateUser: (newUser: UserState) => {}
+  updateUser: (newUser: IUser) => {}
 });
 
 const UserContextProvider: FC<UserContextProviderProps> = ({
   children
 }) => {
-  const [user, setState] = useState<UserState>(defaultUser);
+  const [user, setUser] = useState<IUser>(defaultUser);
 
   useEffect(() => {
     const userSessionStorage =
       sessionStorage.getItem('user');
     if (userSessionStorage) {
-      updateUser(JSON.parse(userSessionStorage));
+      setUser(JSON.parse(userSessionStorage));
     }
   }, []);
 
-  const updateUser = (newUser: UserState) => {
+  const updateUser = (newUser: IUser) => {
     sessionStorage.setItem('user', JSON.stringify(newUser));
-    setState(newUser);
+    setUser(newUser);
   };
 
   return (

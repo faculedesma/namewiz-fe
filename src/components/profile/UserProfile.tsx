@@ -2,11 +2,11 @@ import { Heart } from '@assets/svgs/Heart';
 import { Leave } from '@assets/svgs/Leave';
 import { User } from '@assets/svgs/User';
 import { Link } from 'react-router-dom';
-import { UserState } from '@components/contexts/UserContext';
+import { IUser } from '@components/contexts/UserContext';
 import './user-profile.scss';
 
 interface IUserProfileProps {
-  user: UserState;
+  user: IUser;
 }
 
 export const UserProfile = ({

@@ -1,16 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
-import { FC, ChangeEvent } from 'react';
+import {
+  useState,
+  useEffect,
+  useRef,
+  FC,
+  ChangeEvent
+} from 'react';
 import { Logo } from '@assets/svgs/Logo';
 import { Formule } from '@assets/svgs/Formule';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUserContext } from '@components/contexts/UserContext';
+import {
+  useUserContext,
+  IUser
+} from '@components/contexts/UserContext';
 import jwt_decode from 'jwt-decode';
 import './login.scss';
 
-const clientId = 'get-client-id-from-server';
+const clientId = 'client-id.apps.googleusercontent.com';
 
-export const Login: FC = () => {
+export const Login: FC = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [isEmailValid, setIsEmailValid] =
     useState<boolean>(true);
@@ -18,17 +26,17 @@ export const Login: FC = () => {
   const { updateUser } = useUserContext();
   const navigate = useNavigate();
 
-  const googleButtonRef = useRef();
+  const googleButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     /* global google */
-    google.accounts.id.initialize({
+    (window as any).google.accounts.id.initialize({
       client_id: clientId,
       callback: handleResponse
     });
 
-    google.accounts.id.renderButton(
-      googleButtonRef.current,
+    (window as any).google.accounts.id.renderButton(
+      googleButtonRef.current as HTMLDivElement,
       {
         theme: 'outline',
         size: 'large',
@@ -37,13 +45,15 @@ export const Login: FC = () => {
       }
     );
 
-    google.accounts.id.prompt();
+    (window as any).google.accounts.id.prompt();
   }, []);
 
-  const handleResponse = (response) => {
+  const handleResponse = (response: any) => {
     console.log(response.credential);
-    const decodedUser = jwt_decode(response.credential);
-    const user = {
+    const decodedUser: IUser = jwt_decode(
+      response.credential
+    );
+    const user: IUser = {
       email: decodedUser.email,
       name: decodedUser.name,
       given_name: decodedUser.given_name,
@@ -56,7 +66,7 @@ export const Login: FC = () => {
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>
-  ) => {
+  ): void => {
     const inputEmail = e.target.value;
     setEmail(inputEmail);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,7 +76,8 @@ export const Login: FC = () => {
     );
   };
 
-  const handleLoginWithEmail = () => console.log(email);
+  const handleLoginWithEmail = (): void =>
+    console.log(email);
 
   return (
     <div className="login">

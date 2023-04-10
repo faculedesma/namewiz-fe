@@ -19,8 +19,14 @@
     justify-content: flex-start;
 
     a {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
       span {
-        font-weight: 400;
+        font-weight: 300;
+        margin-left: 0.5rem;
       }
     }
   }
@@ -32,7 +38,6 @@
 
     &-picture {
       height: 25%;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,13 +45,6 @@
       height: 40px;
       border-radius: 50%;
       overflow: hidden;
-      transform: scale(1);
-      transition: calc($golden-ratio-time / 4) ease-in;
-
-      &:hover {
-        transform: scale(1.1);
-        transition: calc($golden-ratio-time / 4) ease-out;
-      }
 
       img {
         width: 100%;
@@ -79,33 +77,11 @@
   &--body {
     height: 50%;
     align-items: flex-start;
-
-    a {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      span {
-        margin-left: 0.5rem;
-      }
-    }
   }
 
   &--footer {
     height: 20%;
     border-top: 1px solid $shades-gray-200;
     align-items: flex-start;
-
-    a {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      span {
-        margin-left: 0.5rem;
-      }
-    }
   }
 }
