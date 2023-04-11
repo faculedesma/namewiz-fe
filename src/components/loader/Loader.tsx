@@ -1,5 +1,15 @@
 import './loader.scss';
 
-export const Loader = () => {
-  return <div className="loader"></div>;
+interface ILoaderProps {
+  width?: number;
+  height?: number;
+}
+
+export const Loader = ({
+  width = 50,
+  height = 50
+}: ILoaderProps) => {
+  return (
+    <div className="loader" style={{ width, height }}></div>
+  );
 };

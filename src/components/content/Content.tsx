@@ -12,6 +12,8 @@ import { PersonalityTraits } from '@components/filters/PersonalityTraits';
 import { NatureInspired } from '@components/filters/NatureInspired';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
+import { Results } from '@components/results/Results';
+import { Loader } from '@components/loader/Loader';
 import './content.scss';
 
 const Content = () => {
@@ -20,6 +22,10 @@ const Content = () => {
     useState<boolean>(true);
   const [isFiltersValid, setIsFiltersValid] =
     useState<boolean>(true);
+  const [showResults, setShowResults] =
+    useState<boolean>(false);
+  const [isLoading, setIsLoading] =
+    useState<boolean>(false);
 
   const { filters } = useFiltersContext();
 
@@ -41,7 +47,11 @@ const Content = () => {
 
   const handleGetName = () => {
     // at least one validation
-    setIsFiltersValid(false);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowResults(true);
+    }, 2000);
     console.log(filters);
   };
 
@@ -81,35 +91,47 @@ const Content = () => {
           </div>
         </div>
         <div className="content-right">
-          <div className="content-right--filters">
-            <div className="content-right--filters-first">
-              <ZodiacSigns />
-            </div>
-            <div className="content-right--filters-second">
-              <Nationality />
-              <div className="content-right--filters-second-shorts">
-                <Gender />
-                <Longitude />
-                <LetterStart />
+          {showResults ? (
+            <Results />
+          ) : (
+            <div className="content-right--filters">
+              <div className="content-right--filters-first">
+                <ZodiacSigns />
+              </div>
+              <div className="content-right--filters-second">
+                <Nationality />
+                <div className="content-right--filters-second-shorts">
+                  <Gender />
+                  <Longitude />
+                  <LetterStart />
+                </div>
+              </div>
+              <div className="content-right--filters-third">
+                <PersonalityTraits />
+                <NatureInspired />
+              </div>
+              <div className="content-right--filters-four">
+                <AditionalInformation />
+              </div>
+              <div className="content-right--filters-cta">
+                <PrimaryButton
+                  label={
+                    isLoading ? (
+                      <Loader width={20} height={20} />
+                    ) : (
+                      'Get names'
+                    )
+                  }
+                  onClick={handleGetName}
+                />
+                {!isFiltersValid ? (
+                  <p>
+                    At least one filter must be selected
+                  </p>
+                ) : null}
               </div>
             </div>
-            <div className="content-right--filters-third">
-              <PersonalityTraits />
-              <NatureInspired />
-            </div>
-            <div className="content-right--filters-four">
-              <AditionalInformation />
-            </div>
-            <div className="content-right--filters-cta">
-              <PrimaryButton
-                label="Get Names"
-                onClick={handleGetName}
-              />
-              {!isFiltersValid ? (
-                <p>At least one filter must be selected</p>
-              ) : null}
-            </div>
-          </div>
+          )}
         </div>
         <div className="content-bg">
           <Formule />

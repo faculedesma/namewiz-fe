@@ -1,8 +1,9 @@
 import { ArrowDown } from '@assets/svgs/ArrowDown';
+import { ReactNode } from 'react';
 import './primary-button.scss';
 
 type PrimaryButtonProps = {
-  label?: string;
+  label?: string | ReactNode;
   backgroundColor?: string;
   onClick?: () => void;
 };
