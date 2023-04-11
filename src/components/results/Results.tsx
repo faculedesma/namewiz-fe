@@ -3,12 +3,18 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { Share } from '@assets/svgs/Share';
 import './results.scss';
 
-export const Results = () => {
+interface IResultsProps {
+  onGoAgain: (value: boolean) => void;
+}
+
+export const Results = ({ onGoAgain }: IResultsProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleShareHover = () => setOpen(true);
 
   const handleShareLeave = () => setOpen(false);
+
+  const handleGoAgain = () => onGoAgain(false);
 
   return (
     <div className="results">
@@ -26,7 +32,10 @@ export const Results = () => {
       </div>
       <div className="results-ctas">
         <div className="results-ctas--primary">
-          <PrimaryButton label="Go again" />
+          <PrimaryButton
+            label="Go again"
+            onClick={handleGoAgain}
+          />
         </div>
         <div className="results-ctas--share">
           <div

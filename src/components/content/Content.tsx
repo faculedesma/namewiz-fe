@@ -92,7 +92,7 @@ const Content = () => {
         </div>
         <div className="content-right">
           {showResults ? (
-            <Results />
+            <Results onGoAgain={setShowResults} />
           ) : (
             <div className="content-right--filters">
               <div className="content-right--filters-first">
