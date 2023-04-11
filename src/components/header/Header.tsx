@@ -76,10 +76,12 @@ const Header = () => {
                 className={`header-right--user-pic ${
                   user.picture ? 'no-border' : ''
                 }`}
-                onClick={handleOpen}
               >
                 {user.picture ? (
-                  <img src={user.picture} />
+                  <img
+                    src={user.picture}
+                    onClick={handleOpen}
+                  />
                 ) : (
                   <User />
                 )}

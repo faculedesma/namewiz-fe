@@ -10,7 +10,8 @@
     width: 40px;
     border: none;
     font-size: $paragraph-one-size;
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     margin: 0;
 
     &:focus-visible {
