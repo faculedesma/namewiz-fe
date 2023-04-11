@@ -87,6 +87,12 @@
         margin-top: 1rem;
         align-items: flex-start;
         flex-basis: calc(100% / 6);
+
+        svg {
+          &:hover {
+            opacity: 0.4;
+          }
+        }
       }
     }
   }
