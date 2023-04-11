@@ -8,22 +8,22 @@ import { Route, Routes } from 'react-router-dom';
 import { Login } from '@components/login/Login';
 import './app.scss';
 
+const Home: FC = () => (
+  <>
+    <Header />
+    <Content />
+    <Footer />
+  </>
+);
+
 const App: FC = () => {
   return (
     <UserContextProvider>
       <FiltersContextProvider>
         <div className="app">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Header />
-                  <Content />
-                  <Footer />
-                </>
-              }
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/wisian-ai/" element={<Home />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </div>
