@@ -195,6 +195,21 @@
       width: 100%;
     }
 
+    &-left {
+      &--input {
+        &-box {
+          input {
+            width: 100%;
+          }
+
+          svg {
+            width: unset;
+            height: unset;
+          }
+        }
+      }
+    }
+
     &-right {
       &--filters {
         &-first {
