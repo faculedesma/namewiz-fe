@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { Share } from '@assets/svgs/Share';
+import { Instagram } from '@assets/svgs/Instagram';
+import { WhatsApp } from '@assets/svgs/WhatsApp';
+import { useClickOutside } from '@components/hooks/useClickOutside';
 import './results.scss';
 
 interface IResultsProps {
@@ -10,11 +13,28 @@ interface IResultsProps {
 export const Results = ({ onGoAgain }: IResultsProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleShareHover = () => setOpen(true);
+  const socialRef = useRef<HTMLDivElement>(null);
 
-  const handleShareLeave = () => setOpen(false);
+  const handleShowSocial = () => setOpen(true);
+
+  const handleHideSocial = () => setOpen(false);
 
   const handleGoAgain = () => onGoAgain(false);
+
+  useEffect(() => {
+    if (socialRef.current) {
+      if (
+        !open &&
+        socialRef.current.classList.contains('hide-social')
+      ) {
+        socialRef.current.classList.add('hide-social');
+      } else {
+        socialRef.current.classList.remove('hide-social');
+      }
+    }
+  }, [open]);
+
+  useClickOutside(socialRef, handleHideSocial);
 
   return (
     <div className="results">
@@ -40,14 +60,17 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
         <div className="results-ctas--share">
           <div
             className="results-ctas--share-button"
-            onMouseEnter={handleShareHover}
-            onMouseLeave={handleShareLeave}
+            onClick={handleShowSocial}
           >
             <Share />
           </div>
           {open ? (
-            <div className="results-ctas--share-social">
-              Social
+            <div
+              ref={socialRef}
+              className="results-ctas--share-social"
+            >
+              <Instagram />
+              <WhatsApp />
             </div>
           ) : null}
         </div>

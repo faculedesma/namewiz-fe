@@ -31,7 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.5rem;
 
     &--primary {
       width: 90%;
@@ -49,10 +49,11 @@
 
     &--share {
       position: relative;
+      width: 50px;
 
       &-button {
         cursor: pointer;
-        width: 50px;
+        width: 100%;
         height: 50px;
         display: flex;
         align-items: center;
@@ -64,9 +65,72 @@
 
       &-social {
         position: absolute;
-        top: 0;
+        bottom: 60px;
         left: 0;
+        width: 100%;
+        height: 100px;
+        background-color: $primary-color;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        gap: 1rem;
+        border: 2px solid $highlight-color;
+        border-radius: 0.5rem;
+        opacity: 0;
+        animation: fade-in calc($golden-ratio-time / 8)
+          ease-in-out forwards;
+
+        svg {
+          cursor: pointer;
+          transform: scale(1);
+          transition: calc($golden-ratio-time / 4) ease-in;
+          opacity: 0;
+          animation: fade-out calc($golden-ratio-time / 4)
+            ease-in-out forwards;
+
+          &:hover {
+            transform: scale(1.1);
+            transition: calc($golden-ratio-time / 4)
+              ease-out;
+          }
+        }
+
+        svg:first-child {
+          opacity: 0;
+          animation: fade-in calc($golden-ratio-time / 4)
+            ease-in-out forwards;
+          animation-delay: calc($golden-ratio-time / 8);
+        }
+
+        svg:last-child {
+          opacity: 0;
+          animation: fade-in calc($golden-ratio-time / 4)
+            ease-in-out forwards;
+        }
       }
+    }
+  }
+
+  .open-social {
+  }
+
+  .hide-social {
+    animation: fade-out calc($golden-ratio-time / 2)
+      ease-in-out forwards;
+
+    svg:first-child {
+      opacity: 0;
+      animation: fade-out calc($golden-ratio-time / 4)
+        ease-in-out forwards;
+    }
+
+    svg:last-child {
+      opacity: 0;
+      animation: fade-out calc($golden-ratio-time / 4)
+        ease-in-out forwards;
+      animation-delay: calc($golden-ratio-time / 8);
     }
   }
 }
@@ -78,5 +142,15 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
