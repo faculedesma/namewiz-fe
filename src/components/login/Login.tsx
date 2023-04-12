@@ -23,7 +23,7 @@ export const Login: FC = (): JSX.Element => {
   const [isEmailValid, setIsEmailValid] =
     useState<boolean>(true);
 
-  const { updateUser } = useUserContext();
+  const { login } = useUserContext();
   const navigate = useNavigate();
 
   const googleButtonRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,6 @@ export const Login: FC = (): JSX.Element => {
   }, []);
 
   const handleResponse = (response: any) => {
-    console.log(response.credential);
     const decodedUser: IUser = jwt_decode(
       response.credential
     );
@@ -60,7 +59,7 @@ export const Login: FC = (): JSX.Element => {
       family_name: decodedUser.family_name,
       picture: decodedUser.picture
     };
-    updateUser(user);
+    login(user);
     navigate('/');
   };
 
@@ -94,7 +93,7 @@ export const Login: FC = (): JSX.Element => {
             <p>Wisian AI</p>
           </div>
           <div className="login-page--content">
-            <h2>Welcome</h2>
+            <h2>Welcome back</h2>
             <div className="login-page--content-input">
               <input
                 type="text"

@@ -25,7 +25,8 @@ export interface IUser {
 
 interface UserContextType {
   user: IUser;
-  updateUser: (newUser: IUser) => void;
+  login: (newUser: IUser) => void;
+  logout: () => void;
 }
 
 interface UserContextProviderProps {
@@ -34,7 +35,8 @@ interface UserContextProviderProps {
 
 const UserContext = createContext<UserContextType>({
   user: defaultUser,
-  updateUser: (newUser: IUser) => {}
+  login: (newUser: IUser) => {},
+  logout: () => {}
 });
 
 const UserContextProvider: FC<UserContextProviderProps> = ({
@@ -50,13 +52,18 @@ const UserContextProvider: FC<UserContextProviderProps> = ({
     }
   }, []);
 
-  const updateUser = (newUser: IUser) => {
+  const login = (newUser: IUser) => {
     sessionStorage.setItem('user', JSON.stringify(newUser));
     setUser(newUser);
   };
 
+  const logout = () => {
+    sessionStorage.removeItem('user');
+    setUser(defaultUser);
+  };
+
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, login, logout }}>
       {children}
     </UserContext.Provider>
   );

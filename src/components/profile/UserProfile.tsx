@@ -2,7 +2,10 @@ import { Heart } from '@assets/svgs/Heart';
 import { Leave } from '@assets/svgs/Leave';
 import { User } from '@assets/svgs/User';
 import { Link } from 'react-router-dom';
-import { IUser } from '@components/contexts/UserContext';
+import {
+  IUser,
+  useUserContext
+} from '@components/contexts/UserContext';
 import './user-profile.scss';
 
 interface IUserProfileProps {
@@ -12,6 +15,8 @@ interface IUserProfileProps {
 export const UserProfile = ({
   user
 }: IUserProfileProps) => {
+  const { logout } = useUserContext();
+
   return (
     <div className="user-profile">
       {user.email ? (
@@ -36,7 +41,7 @@ export const UserProfile = ({
             </Link>
           </div>
           <div className="user-profile--footer">
-            <Link to="/logout">
+            <Link to="/login" onClick={logout}>
               <Leave />
               <span>Log out</span>
             </Link>
