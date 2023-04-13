@@ -62,6 +62,8 @@
         svg {
           cursor: pointer;
           transform: translateX(-30px);
+          width: unset;
+          height: unset;
 
           path {
             fill: $highlight-color;
@@ -200,11 +202,6 @@
         &-box {
           input {
             width: 100%;
-          }
-
-          svg {
-            width: unset;
-            height: unset;
           }
         }
       }
