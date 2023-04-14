@@ -6,6 +6,7 @@ import { FiltersContextProvider } from '@components/contexts/FiltersContext';
 import { UserContextProvider } from '@components/contexts/UserContext';
 import { Route, Routes } from 'react-router-dom';
 import { Login } from '@components/login/Login';
+import { Toaster } from 'sonner';
 import './app.scss';
 
 const Home: FC = () => (
@@ -13,6 +14,7 @@ const Home: FC = () => (
     <Header />
     <Content />
     <Footer />
+    <Toaster position="bottom-center" richColors />
   </>
 );
 

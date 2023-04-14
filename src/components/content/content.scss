@@ -48,9 +48,6 @@
 
       &-box {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
         margin-top: 1rem;
 
         input {
@@ -59,24 +56,39 @@
           padding-left: 1rem;
         }
 
-        svg {
-          cursor: pointer;
-          transform: translateX(-30px);
-          width: unset;
-          height: unset;
+        .loader,
+        button {
+          position: absolute;
+          right: 120px;
+          top: 15px;
+        }
 
-          path {
-            fill: $highlight-color;
-            transform: scale(1);
-            transition: all calc($golden-ratio-time / 8)
-              ease-in-out;
-          }
+        button {
+          background: transparent;
+          border: none;
 
-          &:hover {
+          svg {
+            cursor: pointer;
+            width: unset;
+            height: unset;
+            top: 20px;
+            transform: scale(0);
+            animation: scale-in
+              calc($golden-ratio-time / 16) forwards;
+
             path {
-              transform: scale(0.9);
-              transition: all calc($golden-ratio-time / 8)
+              fill: $highlight-color;
+              transform: scale(1);
+              transition: all calc($golden-ratio-time / 16)
                 ease-in-out;
+            }
+
+            &:hover {
+              path {
+                transform: scale(0.9);
+                transition: all
+                  calc($golden-ratio-time / 16) ease-in-out;
+              }
             }
           }
         }
@@ -143,7 +155,7 @@
   &-bg {
     position: absolute;
     left: -100px;
-    top: 100px;
+    top: 120px;
     pointer-events: none;
 
     svg {
@@ -176,6 +188,16 @@
   }
 }
 
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes reveal-filters {
   0% {
     opacity: 0;
@@ -202,6 +224,15 @@
         &-box {
           input {
             width: 100%;
+          }
+
+          .loader {
+            top: 15px;
+            right: 15px;
+          }
+
+          button {
+            right: 15px;
           }
         }
       }

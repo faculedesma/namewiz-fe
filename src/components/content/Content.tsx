@@ -14,6 +14,7 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import { Results } from '@components/results/Results';
 import { Loader } from '@components/loader/Loader';
+import { toast } from 'sonner';
 import './content.scss';
 
 const Content = () => {
@@ -25,6 +26,8 @@ const Content = () => {
   const [showResults, setShowResults] =
     useState<boolean>(false);
   const [isLoading, setIsLoading] =
+    useState<boolean>(false);
+  const [isSubscribing, setIsSubscribing] =
     useState<boolean>(false);
 
   const { filters } = useFiltersContext();
@@ -42,8 +45,17 @@ const Content = () => {
   };
 
   const handleSubscribeNewsletter = (
-    e: FormEvent<HTMLFormElement>
-  ) => console.log(e);
+    e: FormEvent<HTMLFormElement | HTMLButtonElement>
+  ) => {
+    e.preventDefault();
+    setIsSubscribing(true);
+    setTimeout(() => {
+      setEmail('');
+      setIsSubscribing(false);
+      toast.success('Subscribed successfuly!');
+    }, 2000);
+    console.log(e);
+  };
 
   const handleGetName = () => {
     // at least one validation
@@ -78,7 +90,16 @@ const Content = () => {
                   onChange={handleInputChange}
                   placeholder="Email"
                 />
-                <ArrowRight />
+                {isSubscribing ? (
+                  <Loader width={20} height={20} />
+                ) : (
+                  <button
+                    onClick={handleSubscribeNewsletter}
+                    disabled={!isEmailValid || !email}
+                  >
+                    <ArrowRight />
+                  </button>
+                )}
               </div>
               {!isEmailValid ? (
                 <p className="content-left--input-error">
