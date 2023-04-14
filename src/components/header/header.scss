@@ -20,6 +20,15 @@ header {
 
     svg {
       cursor: pointer;
+      width: 30px;
+      height: 30px;
+      transform: scale(1);
+      transition: calc($golden-ratio-time / 8) ease-in;
+
+      &:hover {
+        transform: scale(1.05);
+        transition: calc($golden-ratio-time / 8) ease-in;
+      }
     }
 
     p {

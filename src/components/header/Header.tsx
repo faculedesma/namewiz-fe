@@ -44,7 +44,7 @@ const Header = () => {
         <div className="header">
           <div className="header-logo">
             <Logo />
-            <p>Wisian AI</p>
+            <p>Namewiz</p>
           </div>
           <div className="header-right">
             <div className="header-right--links">

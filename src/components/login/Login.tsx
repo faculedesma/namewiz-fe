@@ -90,7 +90,7 @@ export const Login: FC = (): JSX.Element => {
         <div className="login-page">
           <div className="login-page--header">
             <Logo />
-            <p>Wisian AI</p>
+            <p>Namewiz</p>
           </div>
           <div className="login-page--content">
             <h2>Welcome back</h2>
