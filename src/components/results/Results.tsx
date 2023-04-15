@@ -3,8 +3,59 @@ import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { Share } from '@assets/svgs/Share';
 import { Instagram } from '@assets/svgs/Instagram';
 import { WhatsApp } from '@assets/svgs/WhatsApp';
+import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import './results.scss';
+
+const mockedResults = [
+  {
+    id: 'dante',
+    name: 'Dante',
+    description: `This name means "enduring" or "steadfast" and is
+    of Italian origin. It could be a great name for a
+    baby boy whose parents have strong ties to
+    Argentina. Dante Alighieri was a famous Italian
+    poet who wrote "The Divine Comedy", which is
+    considered one of the greatest works in Western
+    literature.`
+  },
+  {
+    id: 'daniel',
+    name: 'Daniel',
+    description: `This name means "enduring" or "steadfast" and is
+    of Italian origin. It could be a great name for a
+    baby boy whose parents have strong ties to
+    Argentina. Dante Alighieri was a famous Italian
+    poet who wrote "The Divine Comedy", which is
+    considered one of the greatest works in Western
+    literature. It could be a great name for a
+    baby boy whose parents have strong ties to
+    Argentina. Dante Alighieri was a famous Italian
+    poet who wrote "The Divine Comedy", which is
+    considered one of the greatest works in Western
+    literature.`
+  },
+  {
+    id: 'dario',
+    name: 'Dario',
+    description: `This name means "enduring" or "steadfast" and is
+    of Italian origin. It could be a great name for a
+    baby boy whose parents have strong ties to
+    Argentina. Dante Alighieri was a famous Italian
+    poet who wrote "The Divine Comedy", which is
+    considered one of the greatest works in Western
+    literature. Dante Alighieri was a famous Italian
+    poet who wrote "The Divine Comedy", which is
+    considered one of the greatest works in Western
+    literature.`
+  }
+];
+
+interface IName {
+  id: string;
+  name: string;
+  description: string;
+}
 
 interface IResultsProps {
   onGoAgain: (value: boolean) => void;
@@ -12,6 +63,19 @@ interface IResultsProps {
 
 export const Results = ({ onGoAgain }: IResultsProps) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [selected, setSelected] = useState<IName>({
+    id: '',
+    name: '',
+    description: ''
+  });
+  const [selectedIndex, setSelectedIndex] =
+    useState<number>(0);
+
+  useEffect(() => {
+    if (mockedResults.length) {
+      setSelected(mockedResults[selectedIndex]);
+    }
+  }, [mockedResults, selectedIndex]);
 
   const socialRef = useRef<HTMLDivElement>(null);
 
@@ -20,6 +84,18 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
   const handleHideSocial = () => setOpen(false);
 
   const handleGoAgain = () => onGoAgain(false);
+
+  const handleSelectNext = () => {
+    if (!isLastName) {
+      setSelectedIndex(selectedIndex + 1);
+    }
+  };
+
+  const handleSelectPrev = () => {
+    if (!isFirstName) {
+      setSelectedIndex(selectedIndex - 1);
+    }
+  };
 
   useEffect(() => {
     if (socialRef.current) {
@@ -36,19 +112,43 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
 
   useClickOutside(socialRef, handleHideSocial);
 
+  const isFirstName = selectedIndex === 0;
+
+  const isLastName =
+    selectedIndex === mockedResults.length - 1;
+
   return (
     <div className="results">
+      <div className="results-count">
+        <h3>
+          {selectedIndex + 1}
+          <b>/</b>
+          {mockedResults.length}
+        </h3>
+      </div>
       <div className="results-name">
-        <p>
-          <b>Dante - </b>
-          This name means "enduring" or "steadfast" and is
-          of Italian origin. It could be a great name for a
-          baby boy whose parents have strong ties to
-          Argentina. Dante Alighieri was a famous Italian
-          poet who wrote "The Divine Comedy", which is
-          considered one of the greatest works in Western
-          literature.
-        </p>
+        <>
+          {!isFirstName ? (
+            <div
+              className="results-name--prev"
+              onClick={handleSelectPrev}
+            >
+              <ArrowDown />
+            </div>
+          ) : null}
+          <p>
+            <b>{selected.name} - </b>
+            {selected.description}
+          </p>
+          {!isLastName ? (
+            <div
+              className="results-name--next"
+              onClick={handleSelectNext}
+            >
+              <ArrowDown />
+            </div>
+          ) : null}
+        </>
       </div>
       <div className="results-ctas">
         <div className="results-ctas--primary">

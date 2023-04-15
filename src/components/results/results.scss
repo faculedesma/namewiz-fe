@@ -12,17 +12,67 @@
   animation: fade-in calc($golden-ratio-time / 4) ease-out
     forwards;
 
+  h2 {
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  &-count {
+    h3 {
+      b {
+        color: $highlight-color;
+      }
+    }
+  }
+
   &-name {
+    position: relative;
     height: 400px;
     width: 100%;
     display: flex;
     align-items: flex-start;
     border: 2px solid $secondary-color;
     border-radius: 0.25rem;
+
     p {
-      padding: 2rem;
+      padding: 4rem;
       font-weight: 300;
       line-height: 1.5;
+    }
+
+    &--prev,
+    &--next {
+      position: absolute;
+      top: 50%;
+      transform: scale(0);
+      animation: scale-in calc($golden-ratio-time / 16)
+        ease-out forwards;
+
+      svg {
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+
+        path {
+          stroke: $highlight-color;
+        }
+      }
+    }
+
+    &--prev {
+      left: 15px;
+
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+
+    &--next {
+      right: 15px;
+
+      svg {
+        transform: rotate(-90deg);
+      }
     }
   }
 
@@ -101,7 +151,7 @@
           opacity: 0;
           animation: fade-in calc($golden-ratio-time / 4)
             ease-in-out forwards;
-          animation-delay: calc($golden-ratio-time / 8);
+          animation-delay: calc($golden-ratio-time / 32);
         }
 
         svg:last-child {
@@ -111,9 +161,6 @@
         }
       }
     }
-  }
-
-  .open-social {
   }
 
   .hide-social {
@@ -152,5 +199,15 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
