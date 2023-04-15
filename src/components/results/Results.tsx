@@ -136,10 +136,12 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
               <ArrowDown />
             </div>
           ) : null}
-          <p>
-            <b>{selected.name} - </b>
-            {selected.description}
-          </p>
+          <div className="results-name--text">
+            <p>
+              <b>{selected.name} - </b>
+              {selected.description}
+            </p>
+          </div>
           {!isLastName ? (
             <div
               className="results-name--next"
@@ -148,6 +150,7 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
               <ArrowDown />
             </div>
           ) : null}
+          <div className="results-name--overlay"></div>
         </>
       </div>
       <div className="results-ctas">
