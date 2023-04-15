@@ -79,14 +79,13 @@
     }
 
     &-signs {
-      max-width: 100%;
+      width: 90%;
       height: auto;
-      gap: unset;
+      gap: 2rem;
 
       &--item {
         margin-top: 1rem;
-        align-items: flex-start;
-        flex-basis: calc(100% / 6);
+        align-items: center;
 
         svg {
           &:hover {
