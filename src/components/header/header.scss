@@ -20,8 +20,9 @@ header {
 
     svg {
       cursor: pointer;
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
+      margin-right: 0.25rem;
       transform: scale(1);
       transition: calc($golden-ratio-time / 8) ease-in;
 
