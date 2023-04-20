@@ -133,28 +133,10 @@
     &-left,
     &-right {
       width: 100%;
+      margin-top: 2rem;
     }
 
     &-left {
-      &--input {
-        &-box {
-          input {
-            width: 100%;
-          }
-
-          .loader {
-            top: 15px;
-            right: 15px;
-          }
-
-          button {
-            right: 15px;
-          }
-        }
-      }
-    }
-
-    &-right {
       &--filters {
         &-first {
           width: 100%;
