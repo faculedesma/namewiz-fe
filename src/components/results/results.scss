@@ -100,25 +100,11 @@
   }
 
   &-ctas {
+    display: none;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-
-    &--primary {
-      width: 90%;
-
-      button {
-        background-color: $highlight-color !important;
-
-        svg {
-          path {
-            stroke: $secondary-color;
-          }
-        }
-      }
-    }
 
     &--share {
       position: relative;
