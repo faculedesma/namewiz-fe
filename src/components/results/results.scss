@@ -49,8 +49,8 @@
         overflow-y: scroll;
       }
 
-      &--prev,
-      &--next {
+      &-prev,
+      &-next {
         position: absolute;
         top: 50%;
         transform: scale(0);
@@ -68,7 +68,7 @@
         }
       }
 
-      &--prev {
+      &-prev {
         left: 15px;
 
         svg {
@@ -76,7 +76,7 @@
         }
       }
 
-      &--next {
+      &-next {
         right: 15px;
 
         svg {

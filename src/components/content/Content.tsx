@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Formule } from '@assets/svgs/Formule';
-import { Trash } from '@assets/svgs/Trash';
+import { Refresh } from '@assets/svgs/Refresh';
 import { ZodiacSigns } from '@components/filters/ZodiacSigns';
 import { Nationality } from '@components/filters/Nationality';
 import { LetterStart } from '@components/filters/LetterStart';
@@ -30,7 +30,6 @@ function isEmpty(value: string | Array<string>) {
 const Content = () => {
   const [isLoading, setIsLoading] =
     useState<boolean>(false);
-
   const [names, setNames] = useState<[]>([]);
 
   const { filters, clearFilters } = useFiltersContext();
@@ -45,7 +44,7 @@ const Content = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        'http://localhost:3001/ask',
+        'https://wisian.onrender.com/ask',
         {
           method: 'POST',
           headers: {
@@ -57,7 +56,9 @@ const Content = () => {
 
       const data = await response.json();
       setNames(data);
-      return data;
+      const results =
+        document.getElementById('results-box');
+      results?.scrollIntoView({ behavior: 'smooth' });
     } catch (error) {
       toast.error(
         'There was an error getting the name. Please try again.'
@@ -76,6 +77,11 @@ const Content = () => {
       return;
     }
     await fetchNames();
+  };
+
+  const handleCleanData = () => {
+    clearFilters();
+    setNames([]);
   };
 
   return (
@@ -113,8 +119,8 @@ const Content = () => {
                 onClick={handleGetName}
               />
               <SecondaryButton
-                label={<Trash />}
-                onClick={clearFilters}
+                label={<Refresh />}
+                onClick={handleCleanData}
               />
             </div>
           </div>

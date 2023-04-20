@@ -75,12 +75,12 @@ export const Results = ({ names }: IResultsProps) => {
             {names.length}
           </h3>
         </div>
-        <div className="results-box--name">
+        <div id="results-box" className="results-box--name">
           {names.length ? (
             <div>
               {!isFirstName ? (
                 <div
-                  className="results-name--prev"
+                  className="results-box--name-prev"
                   onClick={handleSelectPrev}
                   onTouchStart={handleSelectPrev}
                 >
@@ -95,7 +95,7 @@ export const Results = ({ names }: IResultsProps) => {
               </div>
               {!isLastName ? (
                 <div
-                  className="results-name--next"
+                  className="results-box--name-next"
                   onClick={handleSelectNext}
                   onTouchEnd={handleSelectNext}
                 >
