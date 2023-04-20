@@ -14,7 +14,6 @@ const Home: FC = () => (
     <Header />
     <Content />
     <Footer />
-    <Toaster position="bottom-center" richColors />
   </>
 );
 
@@ -28,6 +27,7 @@ const App: FC = () => {
             <Route path="/wisian-ai/" element={<Home />} />
             <Route path="/login" element={<Login />} />
           </Routes>
+          <Toaster position="bottom-center" richColors />
         </div>
       </FiltersContextProvider>
     </UserContextProvider>

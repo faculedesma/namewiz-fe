@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { ChangeEvent, FormEvent } from 'react';
-import { ArrowRight } from '@assets/svgs/ArrowRight';
 import { Formule } from '@assets/svgs/Formule';
+import { Trash } from '@assets/svgs/Trash';
 import { ZodiacSigns } from '@components/filters/ZodiacSigns';
 import { Nationality } from '@components/filters/Nationality';
 import { LetterStart } from '@components/filters/LetterStart';
@@ -11,148 +10,117 @@ import { AditionalInformation } from '@components/filters/AditionalInformation';
 import { PersonalityTraits } from '@components/filters/PersonalityTraits';
 import { NatureInspired } from '@components/filters/NatureInspired';
 import { PrimaryButton } from '@components/buttons/PrimaryButton';
+import { SecondaryButton } from '@components/buttons/SecondaryButton';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import { Results } from '@components/results/Results';
 import { Loader } from '@components/loader/Loader';
 import { toast } from 'sonner';
 import './content.scss';
 
+function isEmpty(value: string | Array<string>) {
+  if (Array.isArray(value) && value.length === 0) {
+    return true;
+  }
+  if (value === '') {
+    return true;
+  }
+  return false;
+}
+
 const Content = () => {
-  const [email, setEmail] = useState<string>('');
-  const [isEmailValid, setIsEmailValid] =
-    useState<boolean>(true);
-  const [isFiltersValid, setIsFiltersValid] =
-    useState<boolean>(true);
-  const [showResults, setShowResults] =
-    useState<boolean>(false);
   const [isLoading, setIsLoading] =
     useState<boolean>(false);
-  const [isSubscribing, setIsSubscribing] =
-    useState<boolean>(false);
 
-  const { filters } = useFiltersContext();
+  const [names, setNames] = useState<[]>([]);
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const inputEmail = e.target.value;
-    setEmail(inputEmail);
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setIsEmailValid(
-      emailRegex.test(inputEmail) ||
-        !Boolean(inputEmail.length)
-    );
+  const { filters, clearFilters } = useFiltersContext();
+
+  const validateFilters = () => {
+    return !Object.values(filters).every((val) => {
+      return isEmpty(val);
+    });
   };
 
-  const handleSubscribeNewsletter = (
-    e: FormEvent<HTMLFormElement | HTMLButtonElement>
-  ) => {
-    e.preventDefault();
-    setIsSubscribing(true);
-    setTimeout(() => {
-      setEmail('');
-      setIsSubscribing(false);
-      toast.success('Subscribed successfuly!');
-    }, 2000);
-    console.log(e);
-  };
-
-  const handleGetName = () => {
-    // at least one validation
+  const fetchNames = async () => {
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        'http://localhost:3001/ask',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(filters)
+        }
+      );
+
+      const data = await response.json();
+      setNames(data);
+      return data;
+    } catch (error) {
+      toast.error(
+        'There was an error getting the name. Please try again.'
+      );
+
+      throw error;
+    } finally {
       setIsLoading(false);
-      setShowResults(true);
-    }, 2000);
-    console.log(filters);
+    }
+  };
+
+  const handleGetName = async () => {
+    const isValid = validateFilters();
+    if (!isValid) {
+      toast.error('You must select at least one filter.');
+      return;
+    }
+    await fetchNames();
   };
 
   return (
     <div className="container">
       <div className="content">
         <div className="content-left">
-          <h1>
-            Let's find the <b>perfect</b> name for your
-            little one
-          </h1>
-          <h2>
-            Our algorithms take into account a wide range of
-            criteria, including zodiac signs, origin,
-            meaning, and popularity.
-          </h2>
-          <div className="content-left--input">
-            <label>Subscribe to newsletter</label>
-            <form onSubmit={handleSubscribeNewsletter}>
-              <div className="content-left--input-box">
-                <input
-                  type="text"
-                  value={email}
-                  onChange={handleInputChange}
-                  placeholder="Email"
-                />
-                {isSubscribing ? (
-                  <Loader width={20} height={20} />
-                ) : (
-                  <button
-                    onClick={handleSubscribeNewsletter}
-                    disabled={!isEmailValid || !email}
-                  >
-                    <ArrowRight />
-                  </button>
-                )}
+          <div className="content-left--filters">
+            <div className="content-left--filters-first">
+              <ZodiacSigns />
+            </div>
+            <div className="content-left--filters-second">
+              <Nationality />
+              <div className="content-left--filters-second-shorts">
+                <Gender />
+                <Longitude />
+                <LetterStart />
               </div>
-              {!isEmailValid ? (
-                <p className="content-left--input-error">
-                  Please enter a valid email address
-                </p>
-              ) : (
-                <p></p>
-              )}
-            </form>
+            </div>
+            <div className="content-left--filters-third">
+              <PersonalityTraits />
+              <NatureInspired />
+            </div>
+            <div className="content-left--filters-four">
+              <AditionalInformation />
+            </div>
+            <div className="content-left--filters-cta">
+              <PrimaryButton
+                label={
+                  isLoading ? (
+                    <Loader width={20} height={20} />
+                  ) : (
+                    'Get names'
+                  )
+                }
+                onClick={handleGetName}
+              />
+              <SecondaryButton
+                label={<Trash />}
+                onClick={clearFilters}
+              />
+            </div>
           </div>
         </div>
         <div className="content-right">
-          {showResults ? (
-            <Results onGoAgain={setShowResults} />
-          ) : (
-            <div className="content-right--filters">
-              <div className="content-right--filters-first">
-                <ZodiacSigns />
-              </div>
-              <div className="content-right--filters-second">
-                <Nationality />
-                <div className="content-right--filters-second-shorts">
-                  <Gender />
-                  <Longitude />
-                  <LetterStart />
-                </div>
-              </div>
-              <div className="content-right--filters-third">
-                <PersonalityTraits />
-                <NatureInspired />
-              </div>
-              <div className="content-right--filters-four">
-                <AditionalInformation />
-              </div>
-              <div className="content-right--filters-cta">
-                <PrimaryButton
-                  label={
-                    isLoading ? (
-                      <Loader width={20} height={20} />
-                    ) : (
-                      'Get names'
-                    )
-                  }
-                  onClick={handleGetName}
-                />
-                {!isFiltersValid ? (
-                  <p>
-                    At least one filter must be selected
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          )}
+          <Results names={names} />
         </div>
         <div className="content-bg">
           <Formule />

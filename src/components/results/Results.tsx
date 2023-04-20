@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { PrimaryButton } from '@components/buttons/PrimaryButton';
 import { Share } from '@assets/svgs/Share';
 import { Instagram } from '@assets/svgs/Instagram';
 import { WhatsApp } from '@assets/svgs/WhatsApp';
@@ -7,64 +6,18 @@ import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import './results.scss';
 
-const mockedResults = [
-  {
-    id: 'dante',
-    name: 'Dante',
-    description: `This name means "enduring" or "steadfast" and is
-    of Italian origin. It could be a great name for a
-    baby boy whose parents have strong ties to
-    Argentina. Dante Alighieri was a famous Italian
-    poet who wrote "The Divine Comedy", which is
-    considered one of the greatest works in Western
-    literature.`
-  },
-  {
-    id: 'daniel',
-    name: 'Daniel',
-    description: `This name means "enduring" or "steadfast" and is
-    of Italian origin. It could be a great name for a
-    baby boy whose parents have strong ties to
-    Argentina. Dante Alighieri was a famous Italian
-    poet who wrote "The Divine Comedy", which is
-    considered one of the greatest works in Western
-    literature. It could be a great name for a
-    baby boy whose parents have strong ties to
-    Argentina. Dante Alighieri was a famous Italian
-    poet who wrote "The Divine Comedy", which is
-    considered one of the greatest works in Western
-    literature.`
-  },
-  {
-    id: 'dario',
-    name: 'Dario',
-    description: `This name means "enduring" or "steadfast" and is
-    of Italian origin. It could be a great name for a
-    baby boy whose parents have strong ties to
-    Argentina. Dante Alighieri was a famous Italian
-    poet who wrote "The Divine Comedy", which is
-    considered one of the greatest works in Western
-    literature. Dante Alighieri was a famous Italian
-    poet who wrote "The Divine Comedy", which is
-    considered one of the greatest works in Western
-    literature.`
-  }
-];
-
 interface IName {
-  id: string;
   name: string;
   description: string;
 }
 
 interface IResultsProps {
-  onGoAgain: (value: boolean) => void;
+  names: IName[];
 }
 
-export const Results = ({ onGoAgain }: IResultsProps) => {
+export const Results = ({ names }: IResultsProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState<IName>({
-    id: '',
     name: '',
     description: ''
   });
@@ -72,18 +25,14 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
     useState<number>(0);
 
   useEffect(() => {
-    if (mockedResults.length) {
-      setSelected(mockedResults[selectedIndex]);
+    if (names.length) {
+      setSelected(names[selectedIndex]);
     }
-  }, [mockedResults, selectedIndex]);
+  }, [names, selectedIndex]);
 
   const socialRef = useRef<HTMLDivElement>(null);
 
-  const handleShowSocial = () => setOpen(true);
-
   const handleHideSocial = () => setOpen(false);
-
-  const handleGoAgain = () => onGoAgain(false);
 
   const handleSelectNext = () => {
     if (!isLastName) {
@@ -114,59 +63,60 @@ export const Results = ({ onGoAgain }: IResultsProps) => {
 
   const isFirstName = selectedIndex === 0;
 
-  const isLastName =
-    selectedIndex === mockedResults.length - 1;
+  const isLastName = selectedIndex === names.length - 1;
 
   return (
     <div className="results">
-      <div className="results-count">
-        <h3>
-          {selectedIndex + 1}
-          <b>/</b>
-          {mockedResults.length}
-        </h3>
-      </div>
-      <div className="results-name">
-        <>
-          {!isFirstName ? (
-            <div
-              className="results-name--prev"
-              onClick={handleSelectPrev}
-            >
-              <ArrowDown />
+      <div className="results-box">
+        <div className="results-box--count">
+          <h3>
+            {names.length ? selectedIndex + 1 : 0}
+            <b>/</b>
+            {names.length}
+          </h3>
+        </div>
+        <div className="results-box--name">
+          {names.length ? (
+            <div>
+              {!isFirstName ? (
+                <div
+                  className="results-name--prev"
+                  onClick={handleSelectPrev}
+                  onTouchStart={handleSelectPrev}
+                >
+                  <ArrowDown />
+                </div>
+              ) : null}
+              <div className="results-box--name-text">
+                <p>
+                  <b>{selected.name} - </b>
+                  {selected.description}
+                </p>
+              </div>
+              {!isLastName ? (
+                <div
+                  className="results-name--next"
+                  onClick={handleSelectNext}
+                  onTouchEnd={handleSelectNext}
+                >
+                  <ArrowDown />
+                </div>
+              ) : null}
+              <div className="results-box--name-overlay"></div>
             </div>
-          ) : null}
-          <div className="results-name--text">
-            <p>
-              <b>{selected.name} - </b>
-              {selected.description}
-            </p>
-          </div>
-          {!isLastName ? (
-            <div
-              className="results-name--next"
-              onClick={handleSelectNext}
-            >
-              <ArrowDown />
-            </div>
-          ) : null}
-          <div className="results-name--overlay"></div>
-        </>
+          ) : (
+            <p>Name and description will appear here.</p>
+          )}
+        </div>
       </div>
       <div className="results-ctas">
-        <div className="results-ctas--primary">
-          <PrimaryButton
-            label="Go again"
-            onClick={handleGoAgain}
-          />
-        </div>
         <div className="results-ctas--share">
-          <div
+          {/* <div
             className="results-ctas--share-button"
             onClick={handleShowSocial}
           >
             <Share />
-          </div>
+          </div> */}
           {open ? (
             <div
               ref={socialRef}

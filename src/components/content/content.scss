@@ -9,101 +9,14 @@
 
   &-left,
   &-right {
-    width: 40%;
-  }
-
-  &-left {
-    position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-
-    h1 {
-      animation: slide-in calc($golden-ratio-time / 4)
-        ease-in-out forwards;
-
-      b {
-        color: $highlight-color;
-      }
-    }
-
-    h2 {
-      animation: slide-in calc($golden-ratio-time / 4)
-        ease-in-out forwards;
-    }
-
-    &--input {
-      margin-top: 4rem;
-      animation: fade-in calc($golden-ratio-time / 2)
-        ease-in-out forwards;
-
-      form {
-        height: 80px;
-        overflow: visible;
-      }
-
-      label {
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: $paragraph-two-size;
-      }
-
-      &-box {
-        position: relative;
-        margin-top: 1rem;
-
-        input {
-          width: 80%;
-          height: 50px;
-          padding-left: 1rem;
-        }
-
-        .loader,
-        button {
-          position: absolute;
-          right: 120px;
-          top: 15px;
-        }
-
-        button {
-          background: transparent;
-          border: none;
-
-          svg {
-            cursor: pointer;
-            width: unset;
-            height: unset;
-            top: 20px;
-            transform: scale(0);
-            animation: scale-in
-              calc($golden-ratio-time / 16) forwards;
-
-            path {
-              fill: $highlight-color;
-              transform: scale(1);
-              transition: all calc($golden-ratio-time / 16)
-                ease-in-out;
-            }
-
-            &:hover {
-              path {
-                transform: scale(0.9);
-                transition: all
-                  calc($golden-ratio-time / 16) ease-in-out;
-              }
-            }
-          }
-        }
-      }
-
-      &-error {
-        position: absolute;
-        bottom: -10px;
-        color: $red-error;
-        font-size: $paragraph-two-size;
-      }
-    }
+    width: 45%;
   }
 
   &-right {
+    position: relative;
+  }
+
+  &-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -144,9 +57,12 @@
       }
 
       &-cta {
-        p {
-          color: $red-error;
-          font-size: $paragraph-two-size;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button:first-child {
+          width: 85%;
         }
       }
     }
@@ -154,7 +70,7 @@
 
   &-bg {
     position: absolute;
-    left: -100px;
+    right: -100px;
     top: 120px;
     pointer-events: none;
 

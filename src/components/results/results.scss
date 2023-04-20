@@ -17,80 +17,85 @@
     align-self: flex-start;
   }
 
-  &-count {
-    h3 {
-      b {
-        color: $highlight-color;
-      }
-    }
+  p {
+    padding: 2rem 4rem;
+    font-weight: 300;
+    line-height: 1.5;
   }
 
-  &-name {
+  &-box {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 400px;
     width: 100%;
-    display: flex;
-    align-items: flex-start;
     border: 2px solid $secondary-color;
     border-radius: 0.25rem;
 
-    &--text {
-      height: 100%;
-      overflow-y: scroll;
+    &--count {
+      margin-top: 1rem;
 
-      p {
-        padding: 2rem 4rem;
-        font-weight: 300;
-        line-height: 1.5;
-      }
-    }
-
-    &--prev,
-    &--next {
-      position: absolute;
-      top: 50%;
-      transform: scale(0);
-      animation: scale-in calc($golden-ratio-time / 16)
-        ease-out forwards;
-
-      svg {
-        cursor: pointer;
-        width: 15px;
-        height: 15px;
-
-        path {
-          stroke: $highlight-color;
+      h3 {
+        b {
+          color: $highlight-color;
         }
       }
     }
 
-    &--prev {
-      left: 15px;
-
-      svg {
-        transform: rotate(90deg);
+    &--name {
+      &--text {
+        height: 100%;
+        overflow-y: scroll;
       }
-    }
 
-    &--next {
-      right: 15px;
+      &--prev,
+      &--next {
+        position: absolute;
+        top: 50%;
+        transform: scale(0);
+        animation: scale-in calc($golden-ratio-time / 16)
+          ease-out forwards;
 
-      svg {
-        transform: rotate(-90deg);
+        svg {
+          cursor: pointer;
+          width: 15px;
+          height: 15px;
+
+          path {
+            stroke: $highlight-color;
+          }
+        }
       }
-    }
 
-    &--overlay {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 75px;
-      width: 100%;
-      background: linear-gradient(
-        to top,
-        rgba($primary-color, 1),
-        rgba($primary-color, 0)
-      );
+      &--prev {
+        left: 15px;
+
+        svg {
+          transform: rotate(90deg);
+        }
+      }
+
+      &--next {
+        right: 15px;
+
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &--overlay {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 75px;
+        width: 100%;
+        background: linear-gradient(
+          to top,
+          rgba($primary-color, 1),
+          rgba($primary-color, 0)
+        );
+      }
     }
   }
 
