@@ -84,11 +84,11 @@
         }
       }
 
-      &--overlay {
+      &-overlay {
         position: absolute;
         left: 0;
         bottom: 0;
-        height: 75px;
+        height: 70px;
         width: 100%;
         background: linear-gradient(
           to top,
@@ -218,5 +218,23 @@
 
   100% {
     transform: scale(1);
+  }
+}
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .results {
+    &-box {
+      &--name {
+        margin-top: 0;
+
+        &-text {
+          p {
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
   }
 }
