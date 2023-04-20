@@ -34,6 +34,7 @@ interface FiltersContextType {
     key: K,
     value: FiltersState[K]
   ) => void;
+  clearFilters: () => void;
 }
 
 interface FiltersContextProviderProps {
@@ -42,7 +43,8 @@ interface FiltersContextProviderProps {
 
 const FiltersContext = createContext<FiltersContextType>({
   filters: defaultFilters,
-  updateFilters: () => {}
+  updateFilters: () => {},
+  clearFilters: () => {}
 });
 
 const FiltersContextProvider: FC<
@@ -61,9 +63,11 @@ const FiltersContextProvider: FC<
     }));
   };
 
+  const clearFilters = () => setState(defaultFilters);
+
   return (
     <FiltersContext.Provider
-      value={{ filters, updateFilters }}
+      value={{ filters, updateFilters, clearFilters }}
     >
       {children}
     </FiltersContext.Provider>

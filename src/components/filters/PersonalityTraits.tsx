@@ -21,16 +21,16 @@ export const PersonalityTraits = () => {
   const [selectedPersonalities, setSelectedPersonality] =
     useState<Personality[]>(defaultEmptyPersonality);
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
 
   const personalityRef = useRef<HTMLDivElement>(null);
   const personalityListRef = useRef<ListRef>(null);
 
   useEffect(() => {
-    if (personalityTraits.length) {
-      setSelectedPersonality([]);
+    if (!filters.personality.length) {
+      clearPersonalityTraits();
     }
-  }, [personalityTraits]);
+  }, [filters.personality]);
 
   const handlePersonalitySelect = (key: string) => {
     const isSelected = selectedPersonalities.find(
@@ -64,6 +64,14 @@ export const PersonalityTraits = () => {
         updatedPersonalities.map((pers) => pers.key)
       );
     }
+  };
+
+  const clearPersonalityTraits = () => {
+    if (personalityListRef.current) {
+      personalityListRef.current.clearItems();
+    }
+
+    setSelectedPersonality([]);
   };
 
   const handleOpen = () => {

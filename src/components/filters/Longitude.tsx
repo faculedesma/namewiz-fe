@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
@@ -20,7 +20,20 @@ export const Longitude = () => {
   const [selectedLongitude, setSelectedLongitude] =
     useState<Longitude>(defaultEmptyLongitude);
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
+
+  useEffect(() => {
+    if (filters.longitude) {
+      setSelectedLongitude({
+        key: filters.longitude,
+        label: longitudes.find(
+          (long) => long.key === filters.longitude
+        )!.label
+      });
+    } else {
+      clearLongitude();
+    }
+  }, [filters.longitude]);
 
   const longitudeRef = useRef<HTMLDivElement>(null);
   const longitudeListRef = useRef<ListRef>(null);
@@ -31,6 +44,13 @@ export const Longitude = () => {
     );
     setSelectedLongitude(newSelected!);
     updateFilters('longitude', newSelected!.key);
+  };
+
+  const clearLongitude = () => {
+    if (longitudeListRef.current) {
+      longitudeListRef.current.clearItems();
+    }
+    setSelectedLongitude(defaultEmptyLongitude);
   };
 
   const handleOpen = () => {

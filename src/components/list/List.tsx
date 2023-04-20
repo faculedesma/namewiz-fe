@@ -26,6 +26,7 @@ type ListProps = {
 export type ListRef = {
   open: () => void;
   close: () => void;
+  clearItems: () => void;
 };
 
 const List = forwardRef<ListRef, ListProps>(
@@ -63,6 +64,15 @@ const List = forwardRef<ListRef, ListProps>(
       }
     };
 
+    const handleKeyDown = () => {
+      const selectedItem = filteredItems.find(
+        (item) => item.key === search
+      );
+      if (selectedItem) {
+        handleItemClick(selectedItem);
+      }
+    };
+
     const handleSearchChange = (
       e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -77,6 +87,8 @@ const List = forwardRef<ListRef, ListProps>(
       setIsOpen(false);
     };
 
+    const handleClearItems = () => setSelectedItems([]);
+
     const filteredItems = props.items.filter((item) =>
       item.label
         .toLowerCase()
@@ -85,7 +97,8 @@ const List = forwardRef<ListRef, ListProps>(
 
     useImperativeHandle(ref, () => ({
       open: handleOpen,
-      close: handleClose
+      close: handleClose,
+      clearItems: handleClearItems
     }));
 
     useEffect(() => {
@@ -110,6 +123,7 @@ const List = forwardRef<ListRef, ListProps>(
               props.searchPlaceholder || 'Search'
             }
             onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
           />
         ) : null}
         <ul>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { zodiacSigns } from '@constants/filters';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './zodiac-signs.scss';
@@ -6,7 +6,12 @@ import './zodiac-signs.scss';
 export const ZodiacSigns = () => {
   const [selected, setSelected] = useState<string[]>([]);
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
+
+  useEffect(() => {
+    setSelected(filters.zodiac);
+  }),
+    [filters.zodiac];
 
   const handleSingSelect = (id: string) => {
     let updatedSelected;

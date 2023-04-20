@@ -1,13 +1,15 @@
 @import '../../utils/variables';
 
 .aditional {
+  position: relative;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 
   &-input {
-    height: 75px;
+    height: 50px;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -21,7 +23,9 @@
   }
 
   p {
-    margin-top: 1rem;
+    position: absolute;
+    right: 17px;
+    top: 8px;
     font-size: 0.75rem;
 
     span {

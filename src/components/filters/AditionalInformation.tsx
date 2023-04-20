@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChangeEvent } from 'react';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './aditional.scss';
@@ -6,9 +6,13 @@ import './aditional.scss';
 export const AditionalInformation = () => {
   const [text, setText] = useState<string>('');
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
 
   const lengthRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setText(filters.aditional ? filters.aditional : '');
+  }, [filters.aditional]);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>

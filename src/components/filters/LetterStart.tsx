@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './letter-start.scss';
@@ -6,7 +6,11 @@ import './letter-start.scss';
 export const LetterStart = () => {
   const [letter, setLetter] = useState<string>('');
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
+
+  useEffect(() => {
+    setLetter(filters.start ? filters.start : '');
+  }, [filters.start]);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>

@@ -22,16 +22,23 @@ export const NatureInspired = () => {
     Nature[]
   >(defaultEmptyNature);
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
 
   const natureRef = useRef<HTMLDivElement>(null);
   const natureListRef = useRef<ListRef>(null);
 
   useEffect(() => {
-    if (natureInspired.length) {
-      setSelectedNature([]);
+    if (!filters.nature.length) {
+      clearNatureSelection();
     }
-  }, [natureInspired]);
+  }, [filters.nature]);
+
+  const clearNatureSelection = () => {
+    if (natureListRef.current) {
+      natureListRef.current.clearItems();
+    }
+    setSelectedNature([]);
+  };
 
   const handleNatureSelect = (key: string) => {
     const isSelected = selectedNature.find(

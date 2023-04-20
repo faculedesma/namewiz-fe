@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import List, { ListRef } from '@components/list/List';
@@ -20,7 +20,20 @@ export const Gender = () => {
   const [selectedGender, setSelectedGender] =
     useState<Gender>(defaultEmptyGender);
 
-  const { updateFilters } = useFiltersContext();
+  const { filters, updateFilters } = useFiltersContext();
+
+  useEffect(() => {
+    if (filters.gender) {
+      setSelectedGender({
+        key: filters.gender,
+        label: genders.find(
+          (gen) => gen.key === filters.gender
+        )!.label
+      });
+    } else {
+      clearGender();
+    }
+  }, [filters.gender]);
 
   const genderRef = useRef<HTMLDivElement>(null);
   const genderListRef = useRef<ListRef>(null);
@@ -31,6 +44,13 @@ export const Gender = () => {
     );
     setSelectedGender(newSelected!);
     updateFilters('gender', newSelected!.key);
+  };
+
+  const clearGender = () => {
+    if (genderListRef.current) {
+      genderListRef.current.clearItems();
+    }
+    setSelectedGender(defaultEmptyGender);
   };
 
   const handleOpen = () => {
