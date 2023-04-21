@@ -39,11 +39,16 @@ export const Longitude = () => {
   const longitudeListRef = useRef<ListRef>(null);
 
   const handleLongitudeSelect = (key: string) => {
+    const previousLongitude = selectedLongitude.key;
     const newSelected = longitudes.find(
       (longitude) => longitude.key === key
     );
-    setSelectedLongitude(newSelected!);
-    updateFilters('longitude', newSelected!.key);
+    const updatedLongitude =
+      previousLongitude === newSelected!.key
+        ? defaultEmptyLongitude
+        : newSelected;
+    setSelectedLongitude(updatedLongitude!);
+    updateFilters('longitude', updatedLongitude!.key);
   };
 
   const clearLongitude = () => {

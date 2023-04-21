@@ -39,11 +39,16 @@ export const Gender = () => {
   const genderListRef = useRef<ListRef>(null);
 
   const handleGenderSelect = (key: string) => {
+    const previousGender = selectedGender.key;
     const newSelected = genders.find(
       (gender) => gender.key === key
     );
-    setSelectedGender(newSelected!);
-    updateFilters('gender', newSelected!.key);
+    const updatedGender =
+      newSelected!.key === previousGender
+        ? defaultEmptyGender
+        : newSelected!;
+    setSelectedGender(updatedGender);
+    updateFilters('gender', updatedGender.key);
   };
 
   const clearGender = () => {

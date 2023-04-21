@@ -64,15 +64,6 @@ const List = forwardRef<ListRef, ListProps>(
       }
     };
 
-    const handleKeyDown = () => {
-      const selectedItem = filteredItems.find(
-        (item) => item.key === search
-      );
-      if (selectedItem) {
-        handleItemClick(selectedItem);
-      }
-    };
-
     const handleSearchChange = (
       e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -123,7 +114,6 @@ const List = forwardRef<ListRef, ListProps>(
               props.searchPlaceholder || 'Search'
             }
             onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
           />
         ) : null}
         <ul>
