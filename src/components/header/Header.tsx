@@ -65,7 +65,7 @@ const Header = () => {
                 <Twitter />
               </a>
             </div>
-            <div className="header-right--user">
+            {/* <div className="header-right--user">
               {user.name ? (
                 <p>{user.given_name}</p>
               ) : (
@@ -92,7 +92,8 @@ const Header = () => {
               >
                 <UserProfile user={user} />
               </div>
-            </div>
+            </div> */}
+            <p>Beta</p>
           </div>
         </div>
       </div>

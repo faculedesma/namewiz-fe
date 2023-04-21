@@ -45,6 +45,11 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    p {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
     &--links {
       width: 25%;
       display: flex;
