@@ -110,7 +110,13 @@ export const Nationality = () => {
       try {
         const result = await fetch(COUNTRIES_URL);
         const data = await result.json();
-        const parsedCountries = parseCountries(data);
+        const parsedCountries: Country[] =
+          parseCountries(data);
+        setCountries(
+          parsedCountries.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          )
+        );
         setCountries(parsedCountries);
       } catch (e) {
         throw Error;

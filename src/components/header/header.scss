@@ -46,8 +46,9 @@ header {
     justify-content: space-between;
 
     p {
-      text-transform: uppercase;
+      font-size: $paragraph-two-size;
       font-weight: 700;
+      text-transform: uppercase;
     }
 
     &--links {
