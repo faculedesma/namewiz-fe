@@ -24,7 +24,7 @@ const App: FC = () => {
         <div className="app">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/wisian-ai/" element={<Home />} />
+            <Route path="/namewiz-fe/" element={<Home />} />
             {/* <Route path="/login" element={<Login />} /> */}
           </Routes>
           <Toaster position="bottom-center" richColors />
