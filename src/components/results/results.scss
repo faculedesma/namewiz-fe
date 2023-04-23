@@ -17,12 +17,6 @@
     align-self: flex-start;
   }
 
-  p {
-    padding: 2rem 4rem;
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
   &-box {
     position: relative;
     display: flex;
@@ -32,6 +26,12 @@
     width: 100%;
     border: 2px solid $secondary-color;
     border-radius: 0.25rem;
+
+    p {
+      padding: 2rem 4rem;
+      font-weight: 300;
+      line-height: 1.5;
+    }
 
     &--count {
       margin-top: 1rem;
