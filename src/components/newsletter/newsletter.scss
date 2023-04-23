@@ -1,0 +1,119 @@
+@import '../../utils/variables';
+
+.newsletter {
+  width: 100%;
+  margin-top: 2rem;
+  animation: fade-in calc($golden-ratio-time / 2)
+    ease-in-out forwards;
+
+  form {
+    height: 80px;
+    overflow: visible;
+  }
+
+  label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $paragraph-two-size;
+  }
+
+  &-input {
+    position: relative;
+    margin-top: 1rem;
+
+    input {
+      width: 100%;
+      height: 50px;
+      padding-left: 1rem;
+    }
+
+    .loader,
+    button {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+
+    button {
+      background: transparent;
+      border: none;
+
+      svg {
+        cursor: pointer;
+        width: unset;
+        height: unset;
+        top: 20px;
+        transform: scale(0);
+        animation: scale-in calc($golden-ratio-time / 16)
+          forwards;
+
+        path {
+          fill: $highlight-color;
+          transform: scale(1);
+          transition: all calc($golden-ratio-time / 16)
+            ease-in-out;
+        }
+
+        &:hover {
+          path {
+            transform: scale(0.9);
+            transition: all calc($golden-ratio-time / 16)
+              ease-in-out;
+          }
+        }
+      }
+    }
+
+    &--error {
+      position: absolute;
+      bottom: -10px;
+      color: $red-error;
+      font-size: $paragraph-two-size;
+      margin-top: 0;
+      padding: 0;
+    }
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .newsletter {
+    &-input {
+      input {
+        width: 100%;
+      }
+    }
+  }
+}

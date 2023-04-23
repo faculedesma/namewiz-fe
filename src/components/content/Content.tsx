@@ -84,6 +84,8 @@ const Content = () => {
     setNames([]);
   };
 
+  console.log(filters);
+
   return (
     <div className="container">
       <div className="content">

@@ -4,6 +4,7 @@ import { Instagram } from '@assets/svgs/Instagram';
 import { WhatsApp } from '@assets/svgs/WhatsApp';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
+import { Newsletter } from '@components/newsletter/Newsletter';
 import './results.scss';
 
 interface IName {
@@ -109,6 +110,7 @@ export const Results = ({ names }: IResultsProps) => {
           )}
         </div>
       </div>
+      <Newsletter />
       <div className="results-ctas">
         <div className="results-ctas--share">
           {/* <div
