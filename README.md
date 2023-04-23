@@ -1,10 +1,10 @@
 [![Deployment Pipeline](https://github.com/faculedesma/wisian-ai/actions/workflows/pipeline.yml/badge.svg)](https://github.com/faculedesma/wisian-ai/actions/workflows/pipeline.yml)
 
-# Wisian AI
+# <img src="./public/logo.svg" alt="logo icon"> Namewiz
 
 ## About The Project
 
-Web application to find the perfect name for your baby based on carefully selected filters.
+Namewiz is a React-based web application that utilizes AI models to provide personalized name suggestions for your newborn.
 
 ## Built With
 
