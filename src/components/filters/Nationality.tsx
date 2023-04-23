@@ -5,6 +5,17 @@ import List, { ListRef } from '@components/list/List';
 import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './nationality.scss';
 
+const nationalities = [
+  {
+    id: 'one',
+    key: 'nationalityOne'
+  },
+  {
+    id: 'two',
+    key: 'nationalityTwo'
+  }
+];
+
 const COUNTRIES_URL =
   'https://restcountries.com/v3.1/all?fields=name,flags';
 
@@ -26,40 +37,56 @@ type Country = {
 };
 
 interface ICountryProps {
+  id: string;
   countries: Country[];
 }
 
-const Country = ({ countries }: ICountryProps) => {
+const Country = ({ id, countries }: ICountryProps) => {
   const [selectedCountry, setSelectedCountry] =
     useState<Country>(defaultEmptyCountry);
+  const countryKey = nationalities.find(
+    (nation) => nation.id === id
+  )!.key;
 
   const { filters, updateFilters } = useFiltersContext();
+
+  useEffect(() => {
+    if (!filters[countryKey]) {
+      clearNationality();
+    }
+  }, [filters[countryKey]]);
 
   const countryRef = useRef<HTMLDivElement>(null);
   const countryListRef = useRef<ListRef>(null);
 
   const handleCountrySelect = (name: string) => {
+    const prevCountry = selectedCountry.name;
     const newSelected = countries.find(
       (country) => country.name === name
     );
-    setSelectedCountry(newSelected!);
-    updateFilters('nationality', [
-      ...filters.nationality,
-      newSelected!.name
-    ]);
+    const isSameSelected =
+      newSelected!.name === prevCountry;
+    const updatedCountry = !isSameSelected
+      ? newSelected!
+      : defaultEmptyCountry;
+    setSelectedCountry(updatedCountry);
+    if (id === 'one') {
+      updateFilters('nationalityOne', updatedCountry.name);
+    } else {
+      updateFilters('nationalityTwo', updatedCountry.name);
+    }
+    if (isSameSelected)
+      countryListRef.current?.clearItems();
   };
 
-  const handleOpen = () => {
-    if (countryListRef.current) {
-      countryListRef.current.open();
-    }
+  const clearNationality = () => {
+    countryListRef.current?.clearItems();
+    setSelectedCountry(defaultEmptyCountry);
   };
 
-  const handleClose = () => {
-    if (countryListRef.current) {
-      countryListRef.current.close();
-    }
-  };
+  const handleOpen = () => countryListRef.current?.open();
+
+  const handleClose = () => countryListRef.current?.close();
 
   useClickOutside(countryRef, handleClose);
 
@@ -129,8 +156,8 @@ export const Nationality = () => {
     <div className="nationality">
       <h3>Nationality</h3>
       <div className="nationality-options">
-        <Country countries={countries} />
-        <Country countries={countries} />
+        <Country id="one" countries={countries} />
+        <Country id="two" countries={countries} />
       </div>
     </div>
   );

@@ -8,7 +8,8 @@ import {
 
 const defaultFilters = {
   zodiac: [],
-  nationality: [],
+  nationalityOne: '',
+  nationalityTwo: '',
   gender: '',
   longitude: '',
   start: '',
@@ -19,13 +20,15 @@ const defaultFilters = {
 
 interface FiltersState {
   zodiac: string[];
-  nationality: string[];
+  nationalityOne: string;
+  nationalityTwo: string;
   gender: string;
   longitude: string;
   start: string;
   personality: string[];
   nature: string[];
   aditional: string;
+  [key: string]: any;
 }
 
 interface FiltersContextType {

@@ -52,23 +52,14 @@ export const Longitude = () => {
   };
 
   const clearLongitude = () => {
-    if (longitudeListRef.current) {
-      longitudeListRef.current.clearItems();
-    }
+    longitudeListRef.current?.clearItems();
     setSelectedLongitude(defaultEmptyLongitude);
   };
 
-  const handleOpen = () => {
-    if (longitudeListRef.current) {
-      longitudeListRef.current.open();
-    }
-  };
+  const handleOpen = () => longitudeListRef.current?.open();
 
-  const handleClose = () => {
-    if (longitudeListRef.current) {
-      longitudeListRef.current.close();
-    }
-  };
+  const handleClose = () =>
+    longitudeListRef.current?.close();
 
   useClickOutside(longitudeRef, handleClose);
 

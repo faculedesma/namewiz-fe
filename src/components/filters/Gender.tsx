@@ -52,23 +52,13 @@ export const Gender = () => {
   };
 
   const clearGender = () => {
-    if (genderListRef.current) {
-      genderListRef.current.clearItems();
-    }
+    genderListRef.current?.clearItems();
     setSelectedGender(defaultEmptyGender);
   };
 
-  const handleOpen = () => {
-    if (genderListRef.current) {
-      genderListRef.current.open();
-    }
-  };
+  const handleOpen = () => genderListRef.current?.open();
 
-  const handleClose = () => {
-    if (genderListRef.current) {
-      genderListRef.current.close();
-    }
-  };
+  const handleClose = () => genderListRef.current?.close();
 
   useClickOutside(genderRef, handleClose);
 

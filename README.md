@@ -45,7 +45,6 @@ Distributed under the ISC License.
 ## Contact
 
 Facundo Ledesma - faculedesma1993@gmail.com
-Luciano García Zeman - cluciano.gz@gmail.com
 
 [react]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react
 [react-url]: https://reactjs.org/
