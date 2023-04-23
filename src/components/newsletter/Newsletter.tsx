@@ -24,17 +24,36 @@ export const Newsletter = () => {
     );
   };
 
-  const handleSubscribeNewsletter = (
+  const handleSubscribeNewsletter = async (
     e: FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
+    if (!isEmailValid) return;
     setIsSubscribing(true);
-    setTimeout(() => {
-      setEmail('');
+    try {
+      const response = await fetch(
+        'https://wisian.onrender.com/newsletter',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: email })
+        }
+      );
+      if (response.status === 200) {
+        toast.success(
+          `You've been successfully subscribed.`
+        );
+      }
+    } catch (error) {
+      toast.error(
+        'There was an error subscribing. Please try again.'
+      );
+      throw error;
+    } finally {
       setIsSubscribing(false);
-      toast.success('Subscribed successfuly!');
-    }, 2000);
-    console.log(e);
+    }
   };
 
   return (
