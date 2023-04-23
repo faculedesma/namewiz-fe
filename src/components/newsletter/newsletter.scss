@@ -42,7 +42,6 @@
         cursor: pointer;
         width: unset;
         height: unset;
-        top: 20px;
         transform: scale(0);
         animation: scale-in calc($golden-ratio-time / 16)
           forwards;
@@ -112,6 +111,10 @@
     &-input {
       input {
         width: 100%;
+      }
+
+      button {
+        right: 0;
       }
     }
   }

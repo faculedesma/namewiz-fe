@@ -42,6 +42,7 @@ export const Newsletter = () => {
         }
       );
       if (response.status === 200) {
+        setEmail('');
         toast.success(
           `You've been successfully subscribed.`
         );
