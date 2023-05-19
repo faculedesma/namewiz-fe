@@ -32,6 +32,9 @@ const Content = () => {
     useState<boolean>(false);
   const [names, setNames] = useState<[]>([]);
 
+  const isMobile =
+    window.innerWidth > 320 && window.innerWidth < 480;
+
   const { filters, clearFilters } = useFiltersContext();
 
   const validateFilters = () => {
@@ -56,9 +59,11 @@ const Content = () => {
 
       const data = await response.json();
       setNames(data);
-      const results =
-        document.getElementById('results-box');
-      results?.scrollIntoView({ behavior: 'smooth' });
+      if (isMobile) {
+        const results =
+          document.getElementById('results-box');
+        results?.scrollIntoView({ behavior: 'smooth' });
+      }
     } catch (error) {
       toast.error(
         'There was an error getting the name. Please try again.'
