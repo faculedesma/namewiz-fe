@@ -34,7 +34,6 @@ const Hero = () => {
       setIsSubscribing(false);
       toast.success('Subscribed successfuly!');
     }, 2000);
-    console.log(e);
   };
 
   return (

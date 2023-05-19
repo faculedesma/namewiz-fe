@@ -11,11 +11,13 @@
   &-right {
     position: relative;
     width: 35%;
+    z-index: 2;
   }
 
   &-left {
     width: 45%;
     align-self: flex-start;
+    z-index: 2;
 
     &--filters {
       width: 100%;
@@ -65,14 +67,15 @@
 
   &-bg {
     position: absolute;
-    right: -100px;
+    left: 450px;
     top: 120px;
-    pointer-events: none;
+    z-index: 1;
 
     svg {
-      width: 1000px;
-      height: 1000px;
+      width: 650px;
+      height: 650px;
       opacity: 0.02;
+      pointer-events: none;
     }
   }
 }
@@ -166,13 +169,10 @@
     &-bg {
       left: -50px;
       top: 100px;
-      max-width: 100%;
-      overflow-x: hidden;
-      overflow-y: hidden;
 
       svg {
-        width: 500px;
-        height: 500px;
+        width: 400px;
+        height: 400px;
       }
     }
   }
