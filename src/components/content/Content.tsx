@@ -125,7 +125,7 @@ const Content = () => {
                   isLoading ? (
                     <Loader width={20} height={20} />
                   ) : (
-                    'Get names'
+                    'Get name'
                   )
                 }
                 onClick={handleGetName}
