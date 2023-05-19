@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Share } from '@assets/svgs/Share';
 import { Instagram } from '@assets/svgs/Instagram';
 import { WhatsApp } from '@assets/svgs/WhatsApp';
 import { ArrowDown } from '@assets/svgs/ArrowDown';
 import { useClickOutside } from '@components/hooks/useClickOutside';
 import { Newsletter } from '@components/newsletter/Newsletter';
+import { useFiltersContext } from '@components/contexts/FiltersContext';
 import './results.scss';
 
 interface IName {
@@ -24,28 +24,29 @@ export const Results = ({ names }: IResultsProps) => {
   });
   const [selectedIndex, setSelectedIndex] =
     useState<number>(0);
-
-  useEffect(() => {
-    if (names.length) {
-      setSelected(names[selectedIndex]);
-    }
-  }, [names, selectedIndex]);
+  const [previous, setPrevious] = useState<IName[]>([]);
 
   const socialRef = useRef<HTMLDivElement>(null);
 
-  const handleHideSocial = () => setOpen(false);
+  const { filters, updateFilters } = useFiltersContext();
 
-  const handleSelectNext = () => {
-    if (!isLastName) {
+  useEffect(() => {
+    if (names.length) {
+      setSelected(names[0]);
+      updateFilters('previousNames', [
+        ...filters.previousNames,
+        names[0].name
+      ]);
       setSelectedIndex(selectedIndex + 1);
+      setPrevious([...previous, names[0]]);
     }
-  };
+  }, [names]);
 
-  const handleSelectPrev = () => {
-    if (!isFirstName) {
-      setSelectedIndex(selectedIndex - 1);
+  useEffect(() => {
+    if (filters.previousNames.length === 0) {
+      setPrevious([]);
     }
-  };
+  }, [filters.previousNames]);
 
   useEffect(() => {
     if (socialRef.current) {
@@ -60,49 +61,53 @@ export const Results = ({ names }: IResultsProps) => {
     }
   }, [open]);
 
+  const handleHideSocial = () => setOpen(false);
+
+  const handleSelectChipName = (
+    name: string,
+    index: number
+  ) => {
+    const newSelected = previous.find(
+      (current) => current.name === name
+    );
+    setSelected(newSelected!);
+    setSelectedIndex(index + 1);
+  };
+
   useClickOutside(socialRef, handleHideSocial);
-
-  const isFirstName = selectedIndex === 0;
-
-  const isLastName = selectedIndex === names.length - 1;
 
   return (
     <div className="results">
       <div className="results-box">
         <div className="results-box--count">
           <h3>
-            {names.length ? selectedIndex + 1 : 0}
+            {previous.length ? selectedIndex : 0}
             <b>/</b>
-            {names.length}
+            {previous.length}
           </h3>
+        </div>
+        <div className="results-box--previous">
+          {previous.map((current, index) => {
+            return (
+              <span
+                onClick={() =>
+                  handleSelectChipName(current.name, index)
+                }
+              >
+                {current.name}
+              </span>
+            );
+          })}
         </div>
         <div id="results-box" className="results-box--name">
           {names.length ? (
             <div>
-              {!isFirstName ? (
-                <div
-                  className="results-box--name-prev"
-                  onClick={handleSelectPrev}
-                  onTouchStart={handleSelectPrev}
-                >
-                  <ArrowDown />
-                </div>
-              ) : null}
               <div className="results-box--name-text">
                 <p>
                   <b>{selected.name} - </b>
                   {selected.description}
                 </p>
               </div>
-              {!isLastName ? (
-                <div
-                  className="results-box--name-next"
-                  onClick={handleSelectNext}
-                  onTouchEnd={handleSelectNext}
-                >
-                  <ArrowDown />
-                </div>
-              ) : null}
               <div className="results-box--name-overlay"></div>
             </div>
           ) : (

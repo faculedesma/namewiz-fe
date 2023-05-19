@@ -31,6 +31,31 @@
       line-height: 1.5;
     }
 
+    &--previous {
+      margin-top: 1rem;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 20px;
+        padding: 2px 4px;
+        border-radius: 0.25rem;
+        background-color: rgba($highlight-color, 0.2);
+        color: rgba($secondary-color, 1);
+        border: 2px solid $secondary-color;
+        cursor: pointer;
+        font-size: 12px;
+        animation: scale-in calc($golden-ratio-time / 8)
+          ease-out forwards;
+      }
+    }
+
     &--count {
       margin-top: 1rem;
 

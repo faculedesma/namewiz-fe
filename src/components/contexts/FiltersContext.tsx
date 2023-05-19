@@ -15,7 +15,8 @@ const defaultFilters = {
   start: '',
   personality: [],
   nature: [],
-  aditional: ''
+  aditional: '',
+  previousNames: []
 };
 
 interface FiltersState {
@@ -28,6 +29,7 @@ interface FiltersState {
   personality: string[];
   nature: string[];
   aditional: string;
+  previousNames: string[];
   [key: string]: any;
 }
 

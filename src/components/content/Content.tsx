@@ -77,8 +77,15 @@ const Content = () => {
 
   const handleGetName = async () => {
     const isValid = validateFilters();
+    const isLimit = filters.previousNames.length === 3;
     if (!isValid) {
       toast.error('You must select at least one filter.');
+      return;
+    }
+    if (isLimit) {
+      toast.error(
+        'You can only obtain three names in this beta.'
+      );
       return;
     }
     await fetchNames();

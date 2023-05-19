@@ -1,4 +1,5 @@
 import { ChatGPT } from '@assets/svgs/ChatGPT';
+import { Message } from '@assets/svgs/Message';
 import './footer.scss';
 
 const Footer = () => {
@@ -6,7 +7,9 @@ const Footer = () => {
     <footer>
       <div className="container">
         <div className="footer">
-          <div className="footer-left">Feedback</div>
+          <div className="footer-left">
+            <Message /> <p>Feedback</p>
+          </div>
           <div className="footer-right">
             <p>
               Powered by <b>ChatGPT</b>
