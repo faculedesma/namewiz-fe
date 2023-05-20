@@ -67,10 +67,8 @@
     }
 
     &--name {
-      &-text {
-        height: 300px;
-        overflow-y: scroll;
-      }
+      height: 300px;
+      overflow-y: scroll;
 
       &-prev,
       &-next {

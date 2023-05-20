@@ -55,7 +55,8 @@ a {
   text-decoration: none;
 }
 
-input {
+input,
+textarea {
   box-sizing: border-box;
   border-radius: 0.25rem;
   border: 2px solid $secondary-color;
@@ -70,12 +71,12 @@ input {
   }
 }
 
-::placeholder {
-  opacity: 0.5;
+textarea {
+  padding: 15px 0px 0px 10px;
 }
 
 input,
-::placeholder {
+textarea {
   color: $secondary-color;
   font-family: inherit;
 }
