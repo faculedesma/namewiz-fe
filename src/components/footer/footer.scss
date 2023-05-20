@@ -78,6 +78,7 @@ footer {
         margin: 0;
         border: 1px solid $shades-gray-400;
         background: $primary-color;
+        resize: none;
 
         &:focus-visible {
           border: 1px solid $highlight-color;
