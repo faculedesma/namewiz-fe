@@ -47,6 +47,13 @@ footer {
       justify-content: space-between;
       gap: 1rem;
 
+      p {
+        color: $red-error;
+        font-size: 12px;
+        margin: 0;
+        align-self: flex-start;
+      }
+
       input {
         height: 20%;
         width: 100%;

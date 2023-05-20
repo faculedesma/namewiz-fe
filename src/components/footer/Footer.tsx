@@ -1,5 +1,6 @@
 import {
   FormEvent,
+  ChangeEvent,
   useEffect,
   useRef,
   useState
@@ -17,6 +18,8 @@ const Footer = () => {
   const [text, setText] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEmailValid, setIsEmailValid] =
+    useState<boolean>(true);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -40,6 +43,7 @@ const Footer = () => {
     e: FormEvent<HTMLFormElement | HTMLButtonElement>
   ) => {
     e.preventDefault();
+    if (!isEmailValid) return;
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -72,6 +76,18 @@ const Footer = () => {
     }
   };
 
+  const handleInputEmailChange = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
+    const inputEmail = e.target.value;
+    setEmail(inputEmail);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsEmailValid(
+      emailRegex.test(inputEmail) ||
+        !Boolean(inputEmail.length)
+    );
+  };
+
   useClickOutside(formRef, handleClose);
 
   return (
@@ -91,9 +107,12 @@ const Footer = () => {
               <input
                 type="text"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email or name"
+                onChange={handleInputEmailChange}
+                placeholder="Email"
               />
+              {!isEmailValid && (
+                <p>Please enter a valid email address</p>
+              )}
               <textarea
                 name="textarea"
                 value={text}
