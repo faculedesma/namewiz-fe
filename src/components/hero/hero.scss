@@ -13,7 +13,7 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
     h1 {
-      animation: slide-in calc($golden-ratio-time / 4)
+      animation: slide-in calc($golden-ratio-time / 6)
         ease-in-out forwards;
 
       b {
@@ -22,7 +22,7 @@
     }
 
     h2 {
-      animation: slide-in calc($golden-ratio-time / 4)
+      animation: slide-in calc($golden-ratio-time / 6)
         ease-in-out forwards;
     }
 
@@ -69,21 +69,21 @@
             height: unset;
             top: 20px;
             transform: scale(0);
-            animation: scale-in
-              calc($golden-ratio-time / 16) forwards;
+            animation: scale-in calc($golden-ratio-time / 6)
+              forwards;
 
             path {
               fill: $highlight-color;
               transform: scale(1);
-              transition: all calc($golden-ratio-time / 16)
+              transition: all calc($golden-ratio-time / 6)
                 ease-in-out;
             }
 
             &:hover {
               path {
                 transform: scale(0.9);
-                transition: all
-                  calc($golden-ratio-time / 16) ease-in-out;
+                transition: all calc($golden-ratio-time / 6)
+                  ease-in-out;
               }
             }
           }

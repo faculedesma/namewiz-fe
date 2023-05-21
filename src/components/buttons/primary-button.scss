@@ -15,7 +15,7 @@
   cursor: pointer;
   border: none;
   transform: scale(1);
-  transition: all calc($golden-ratio-time / 4) ease-in-out;
+  transition: all calc($golden-ratio-time / 6) ease-in-out;
 
   &:focus {
     outline: none;
@@ -24,12 +24,12 @@
   &:hover {
     transform: scale(0.99);
     border: 2px solid $highlight-color;
-    transition: all calc($golden-ratio-time / 4) ease-in-out;
+    transition: all calc($golden-ratio-time / 6) ease-in-out;
   }
 
   svg {
     transform: rotate(-90deg) scale(1);
-    transition: all calc($golden-ratio-time / 4) ease-in-out;
+    transition: all calc($golden-ratio-time / 6) ease-in-out;
     margin-left: 1rem;
 
     path {

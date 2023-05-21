@@ -62,12 +62,12 @@ textarea {
   border: 2px solid $secondary-color;
   background: none;
   border: 2px solid $secondary-color;
-  transition: all calc($golden-ratio-time / 8) ease-in-out;
+  transition: all calc($golden-ratio-time / 6) ease-in-out;
 
   &:focus-visible {
     outline: none;
     border: 2px solid $highlight-color;
-    transition: all calc($golden-ratio-time / 8) ease-in-out;
+    transition: all calc($golden-ratio-time / 6) ease-in-out;
   }
 }
 

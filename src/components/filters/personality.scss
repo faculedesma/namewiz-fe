@@ -30,7 +30,7 @@
         border: 1.5px solid $highlight-color;
         border-radius: 0.25rem;
         transform: scale(0);
-        animation: scale-show calc($golden-ratio-time / 8)
+        animation: scale-show calc($golden-ratio-time / 6)
           ease-in-out forwards;
       }
 
@@ -46,7 +46,7 @@
       }
 
       .hide {
-        animation: scale-hide calc($golden-ratio-time / 16)
+        animation: scale-hide calc($golden-ratio-time / 6)
           ease-in-out forwards;
       }
     }

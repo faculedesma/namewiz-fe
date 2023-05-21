@@ -7,7 +7,7 @@
   justify-content: center;
   gap: 1rem;
   opacity: 0;
-  animation: fade-in calc($golden-ratio-time / 4) ease-out
+  animation: fade-in calc($golden-ratio-time / 6) ease-out
     forwards;
 
   h2 {
@@ -51,7 +51,7 @@
         border: 2px solid $secondary-color;
         cursor: pointer;
         font-size: 12px;
-        animation: scale-in calc($golden-ratio-time / 8)
+        animation: scale-in calc($golden-ratio-time / 6)
           ease-out forwards;
       }
     }
@@ -75,7 +75,7 @@
         position: absolute;
         top: 50%;
         transform: scale(0);
-        animation: scale-in calc($golden-ratio-time / 16)
+        animation: scale-in calc($golden-ratio-time / 6)
           ease-out forwards;
 
         svg {
@@ -159,34 +159,34 @@
         border: 2px solid $highlight-color;
         border-radius: 0.5rem;
         opacity: 0;
-        animation: fade-in calc($golden-ratio-time / 8)
+        animation: fade-in calc($golden-ratio-time / 6)
           ease-in-out forwards;
 
         svg {
           cursor: pointer;
           transform: scale(1);
-          transition: calc($golden-ratio-time / 4) ease-in;
+          transition: calc($golden-ratio-time / 6) ease-in;
           opacity: 0;
-          animation: fade-out calc($golden-ratio-time / 4)
+          animation: fade-out calc($golden-ratio-time / 6)
             ease-in-out forwards;
 
           &:hover {
             transform: scale(1.1);
-            transition: calc($golden-ratio-time / 4)
+            transition: calc($golden-ratio-time / 6)
               ease-out;
           }
         }
 
         svg:first-child {
           opacity: 0;
-          animation: fade-in calc($golden-ratio-time / 4)
+          animation: fade-in calc($golden-ratio-time / 6)
             ease-in-out forwards;
           animation-delay: calc($golden-ratio-time / 32);
         }
 
         svg:last-child {
           opacity: 0;
-          animation: fade-in calc($golden-ratio-time / 4)
+          animation: fade-in calc($golden-ratio-time / 6)
             ease-in-out forwards;
         }
       }
@@ -199,15 +199,15 @@
 
     svg:first-child {
       opacity: 0;
-      animation: fade-out calc($golden-ratio-time / 4)
+      animation: fade-out calc($golden-ratio-time / 6)
         ease-in-out forwards;
     }
 
     svg:last-child {
       opacity: 0;
-      animation: fade-out calc($golden-ratio-time / 4)
+      animation: fade-out calc($golden-ratio-time / 6)
         ease-in-out forwards;
-      animation-delay: calc($golden-ratio-time / 8);
+      animation-delay: calc($golden-ratio-time / 6);
     }
   }
 }

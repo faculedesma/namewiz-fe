@@ -43,20 +43,20 @@
         width: unset;
         height: unset;
         transform: scale(0);
-        animation: scale-in calc($golden-ratio-time / 16)
+        animation: scale-in calc($golden-ratio-time / 6)
           forwards;
 
         path {
           fill: $highlight-color;
           transform: scale(1);
-          transition: all calc($golden-ratio-time / 16)
+          transition: all calc($golden-ratio-time / 6)
             ease-in-out;
         }
 
         &:hover {
           path {
             transform: scale(0.9);
-            transition: all calc($golden-ratio-time / 16)
+            transition: all calc($golden-ratio-time / 6)
               ease-in-out;
           }
         }

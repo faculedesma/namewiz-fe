@@ -31,12 +31,12 @@
         width: 24px;
         height: 24px;
         opacity: 0.4;
-        transition: all calc($golden-ratio-time / 8)
+        transition: all calc($golden-ratio-time / 6)
           ease-out;
 
         &:hover {
           opacity: 1;
-          transition: all calc($golden-ratio-time / 8)
+          transition: all calc($golden-ratio-time / 6)
             ease-in;
         }
       }
@@ -47,7 +47,7 @@
         text-transform: uppercase;
         margin-top: 1rem;
         border-bottom: 1px solid transparent;
-        transition: all calc($golden-ratio-time / 8)
+        transition: all calc($golden-ratio-time / 6)
           ease-out;
 
         &:focus-visible {
@@ -59,13 +59,13 @@
     .sign-active {
       svg {
         opacity: 1;
-        transition: all calc($golden-ratio-time / 8) ease-in;
+        transition: all calc($golden-ratio-time / 6) ease-in;
       }
 
       label {
         font-weight: 700;
         border-bottom: 1px solid $highlight-color;
-        transition: all calc($golden-ratio-time / 8)
+        transition: all calc($golden-ratio-time / 6)
           ease-out;
       }
     }

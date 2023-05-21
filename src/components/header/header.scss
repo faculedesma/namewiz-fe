@@ -24,11 +24,11 @@ header {
       height: 43px;
       margin-right: 0.25rem;
       transform: scale(1);
-      transition: calc($golden-ratio-time / 8) ease-in;
+      transition: calc($golden-ratio-time / 6) ease-in;
 
       &:hover {
         transform: scale(1.05);
-        transition: calc($golden-ratio-time / 8) ease-in;
+        transition: calc($golden-ratio-time / 6) ease-in;
       }
     }
 
@@ -62,12 +62,12 @@ header {
         align-items: center;
         justify-content: center;
         transform: scale(1);
-        transition: calc($golden-ratio-time / 4) ease-in;
+        transition: calc($golden-ratio-time / 6) ease-in;
         cursor: pointer;
 
         &:hover {
           transform: scale(1.1);
-          transition: calc($golden-ratio-time / 4) ease-out;
+          transition: calc($golden-ratio-time / 6) ease-out;
         }
       }
     }
@@ -99,11 +99,11 @@ header {
         border: 1px solid $secondary-color;
         overflow: hidden;
         transform: scale(1);
-        transition: calc($golden-ratio-time / 4) ease-in;
+        transition: calc($golden-ratio-time / 6) ease-in;
 
         &:hover {
           transform: scale(1.1);
-          transition: calc($golden-ratio-time / 4) ease-out;
+          transition: calc($golden-ratio-time / 6) ease-out;
         }
 
         img {
@@ -144,12 +144,12 @@ header {
 }
 
 .open-profile {
-  animation: open-profile calc($golden-ratio-time / 8)
+  animation: open-profile calc($golden-ratio-time / 6)
     ease-in-out forwards;
 }
 
 .close-profile {
-  animation: close-profile calc($golden-ratio-time / 8)
+  animation: close-profile calc($golden-ratio-time / 6)
     ease-in-out forwards;
 }
 

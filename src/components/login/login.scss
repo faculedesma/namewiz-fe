@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   opacity: 0;
-  animation: fade-in calc($golden-ratio-time / 4)
+  animation: fade-in calc($golden-ratio-time / 6)
     ease-in-out forwards;
 
   &-left,

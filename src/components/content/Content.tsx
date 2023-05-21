@@ -78,6 +78,7 @@ const Content = () => {
   const handleGetName = async () => {
     const isValid = validateFilters();
     const isLimit = filters.previousNames.length === 3;
+    if (isLoading) return;
     if (!isValid) {
       toast.error('You must select at least one filter.');
       return;
