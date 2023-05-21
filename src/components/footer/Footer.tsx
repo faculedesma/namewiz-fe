@@ -62,6 +62,7 @@ const Footer = () => {
       if (response.status === 200) {
         setEmail('');
         setText('');
+        handleClose();
         toast.success(
           `Thank you for sharing your thoughts.`
         );
