@@ -45,6 +45,7 @@ export const Results = ({ names }: IResultsProps) => {
   useEffect(() => {
     if (filters.previousNames.length === 0) {
       setPrevious([]);
+      setSelectedIndex(0);
     }
   }, [filters.previousNames]);
 

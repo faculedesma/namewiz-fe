@@ -59,11 +59,6 @@ const Content = () => {
 
       const data = await response.json();
       setNames(data);
-      if (isMobile) {
-        const results =
-          document.getElementById('results-box');
-        results?.scrollIntoView({ behavior: 'smooth' });
-      }
     } catch (error) {
       toast.error(
         'There was an error getting the name. Please try again.'
