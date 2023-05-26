@@ -32,9 +32,6 @@ const Content = () => {
     useState<boolean>(false);
   const [names, setNames] = useState<[]>([]);
 
-  const isMobile =
-    window.innerWidth > 320 && window.innerWidth < 480;
-
   const { filters, clearFilters } = useFiltersContext();
 
   const validateFilters = () => {
@@ -56,14 +53,19 @@ const Content = () => {
           body: JSON.stringify(filters)
         }
       );
-
+      if (!response.ok && response.status == 429) {
+        const error: Error = new Error(
+          'Sorry! Currently we are receiving too many requests. Please try again please.'
+        );
+        throw error;
+      }
       const data = await response.json();
       setNames(data);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(
-        'There was an error getting the name. Please try again.'
+        error.message ||
+          'There was an error getting the name. Please try again.'
       );
-
       throw error;
     } finally {
       setIsLoading(false);
